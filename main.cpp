@@ -1,14 +1,32 @@
 #include <iostream>
+#include <fstream>
 #include "Node.h"
+#include "Book.h"
+#include "ChildrenBook.h"
+#include "ComputerBook.h"
+#include "Novel.h"
+#include "Person.h"
+#include "Student.h"
+#include "Teacher.h"
 using namespace std;
 
-
+ 
+typedef Node<Book*>* BookNodePtr;
+typedef Node<Person*>* PersonNodePtr;
 
 void show_menu(char& user_input);
+
+
 
 int main()
 {
     
+    
+   
+   
+   
+   
+   
    char user_input = ' ';
    int user_input_as_int = 0;
     do
@@ -81,3 +99,5 @@ void show_menu(char& user_input)
     cout << "Select (1-6) : ";
     cin >> user_input;
 }
+
+ 
