@@ -5,15 +5,15 @@ ChildrenBook::ChildrenBook() : Book(), age(0)
 
 }
 
-ChildrenBook::ChildrenBook(int newCode, std::string newTitle, int newAvailable, int newRented, int newAge) : 
-	Book(newCode, newTitle, newAvailable, newRented), age(newAge)
+ChildrenBook::ChildrenBook(int code, std::string title, int available, int rented, int age) : 
+	Book(code, title, available, rented), age(age)
 {
 
 }
 
-void ChildrenBook::setAge(int newAge)
+void ChildrenBook::setAge(int age)
 {
-	age = newAge;
+	this->age = age;
 }
 
 int ChildrenBook::getAge() const

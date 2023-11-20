@@ -4,8 +4,8 @@ class ChildrenBook : public Book
 {
 	public:
 		ChildrenBook();
-		ChildrenBook(int newCode, std::string newTitle, int newAvailable, int newRented, int newAge);
-		void setAge(int newAge);
+		ChildrenBook(int code, std::string title, int available, int rented, int age);
+		void setAge(int age);
 		int getAge() const;
 	private:
 		int age;

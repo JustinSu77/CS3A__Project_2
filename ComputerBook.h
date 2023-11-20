@@ -4,8 +4,8 @@ class ComputerBook : Book
 {
 	public:
 		ComputerBook();
-		ComputerBook(int newCode, std::string newTitle, int newAvailable, int newRented, std::string newPublisher);
-		void setPublisher(std::string newPublisher);
+		ComputerBook(int code, std::string title, int available, int rented, std::string publisher);
+		void setPublisher(std::string publisher);
 		std::string getPublisher() const;
 	private:
 		std::string publisher;

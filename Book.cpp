@@ -6,30 +6,30 @@ Book::Book() :
 
 }
 
-Book::Book(int newCode, std::string newTitle, int newAvailable, int newRented) :
-	code(newCode), title(newTitle), available(newAvailable), rented(newRented)
+Book::Book(int code, std::string title, int available, int rented) :
+	code(code), title(title), available(available), rented(rented)
 {
 
 }
 
-void Book::setCode(int newCode)
+void Book::setCode(int code)
 {
-	code = newCode;
+	this->code = code;
 }
 
-void Book::setTitle(std::string newTitle)
+void Book::setTitle(std::string title)
 {
-	title = newTitle;
+	this->title = title;
 }
 
-void Book::setAvailable(int newAvailable)
+void Book::setAvailable(int available)
 {
-	available = newAvailable;
+	this->available = available;
 }
 
-void Book::setRented(int newRented)
+void Book::setRented(int rented)
 {
-	rented = newRented;
+	this->rented = rented;
 }
 
 int Book::getCode() const

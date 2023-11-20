@@ -6,15 +6,15 @@ ComputerBook::ComputerBook() : Book(), publisher("")
 
 }
 
-ComputerBook::ComputerBook(int newCode, std::string newTitle, int newAvailable, int newRented, std::string newPublisher) : 
-	Book(newCode, newTitle, newAvailable, newRented), publisher(newPublisher)
+ComputerBook::ComputerBook(int code, std::string title, int available, int rented, std::string publisher) : 
+	Book(code, title, available, rented), publisher(publisher)
 {
 
 }
 
-void ComputerBook::setPublisher(std::string newPublisher)
+void ComputerBook::setPublisher(std::string publisher)
 {
-	publisher = newPublisher;
+	this->publisher = publisher;
 }
 
 std::string ComputerBook::getPublisher() const

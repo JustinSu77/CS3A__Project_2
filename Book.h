@@ -5,11 +5,11 @@ class Book
 {
 	public:
 		Book();
-		Book(int newCode, std::string newTitle, int newAvailable, int newRented);
-		void setCode(int newCode);
-		void setTitle(std::string newTitle);
-		void setAvailable(int newAvailable);
-		void setRented(int newRented);
+		Book(int code, std::string title, int available, int rented);
+		void setCode(int code);
+		void setTitle(std::string title);
+		void setAvailable(int available);
+		void setRented(int rented);
 		int getCode() const;
 		std::string getTitle() const;
 		int getAvailable() const;
