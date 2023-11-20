@@ -1,6 +1,6 @@
 #include "Book.h"
 
-class ComputerBook : Book
+class ComputerBook : public Book
 {
 	public:
 		ComputerBook();
