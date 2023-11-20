@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "Node.h"
 #include "Book.h"
 #include "ChildrenBook.h"
@@ -26,7 +27,8 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile);
 
 
 // Task: Search a book
- 
+void search_book(BookNodePtr library[3], int array_size);
+BookNodePtr book_exists(BookNodePtr head, int id, string title);
 
 // Debugging
 void display_library_array(BookNodePtr library[3], int array_size);
@@ -46,11 +48,11 @@ int main()
         exit(1);
     }
     fill_library_array(library, inputFile);
-    display_library_array(library, library_array_size);
+    //display_library_array(library, library_array_size);
     inputFile.close();
    
-    cout << endl;
-    cout << endl;
+    //cout << endl;
+    //cout << endl;
     
     PersonNodePtr person[2];
     int person_array_size = sizeof(person) / sizeof(PersonNodePtr);
@@ -61,63 +63,58 @@ int main()
         exit(1);
     }
     fill_person_array(person, inputFile);
-    display_person_array(person, person_array_size);
+    //display_person_array(person, person_array_size);
     inputFile.close();
    
    
    
-   //char user_input = ' ';
-   //int user_input_as_int = 0;
-   // do
-   // {
-   //    
-   //     show_menu(user_input);
-   //     user_input_as_int = static_cast<int>(user_input) - static_cast<int>('0');
-   //    
-   //     if (user_input_as_int < 1 || user_input_as_int > 6)
-   //     {
-   //         // Skip a line in terminal for readability
-   //         cout << endl;
-   //         // Notify
-   //         cout << "Invalid option! Exiting program!" << endl;
-   //         // Exit program with error code 1
-   //         exit(1);
-   //     }
-   //     switch (user_input_as_int)
-   //     {
-   //         case 1:
-   //             cout << "Calling fuction to search a book" << endl;
-   //             cout << endl;
-   //             cout << endl;
-   //             break;
-   //         case 2:
-   //             cout << "Calling function to rent a book" << endl;
-   //             cout << endl;
-   //             cout << endl;
-   //             break;
-   //         case 3:
-   //             cout << "Calling a function to return a book " << endl;
-   //             cout << endl;
-   //             cout << endl;
-   //             break;
-   //         case 4:
-   //             cout << "Calling function to show information" << endl;
-   //             cout << endl;
-   //             cout << endl;
-   //             break;
-   //         case 5:
-   //             cout << "Calling function to show all books" << endl;
-   //             cout << endl;
-   //             cout << endl;
-   //             break;
-   //         default:
-   //             // Notify program is about to exit
-   //             cout << endl;
-   //             cout << "  Exiting....";
-   //             cout << endl;
-   //     }
-   //      
-   // } while (user_input_as_int != 6);
+   char user_input = ' ';
+   int user_input_as_int = 0;
+   do
+   {
+       
+        show_menu(user_input);
+        user_input_as_int = static_cast<int>(user_input) - static_cast<int>('0');
+       
+        if (user_input_as_int < 1 || user_input_as_int > 6)
+        {
+            // Skip a line in terminal for readability
+            cout << endl;
+            // Notify
+            cout << "Invalid option! Exiting program!" << endl;
+            // Exit program with error code 1
+            exit(1);
+        }
+        switch (user_input_as_int)
+        {
+            case 1:
+                search_book(library, library_array_size);
+                cout << endl;
+                break;
+            case 2:
+                cout << "Calling function to rent a book" << endl;
+                cout << endl;
+                break;
+            case 3:
+                cout << "Calling a function to return a book " << endl;
+                cout << endl;
+                break;
+            case 4:
+                cout << "Calling function to show information" << endl;
+                cout << endl;
+                break;
+            case 5:
+                cout << "Calling function to show all books" << endl;
+                cout << endl;
+                break;
+            default:
+                // Notify program is about to exit
+                cout << endl;
+                cout << "  Exiting....";
+                cout << endl;
+        }
+         
+    } while (user_input_as_int != 6);
 
 
     return 0;
@@ -180,6 +177,69 @@ void fill_library_array(BookNodePtr library[3], ifstream& inputFile)
      
 }
  
+
+void search_book(BookNodePtr library[3], int array_size)
+{
+    cout << endl;
+    int code = 0;
+    cout << "Enter code : ";
+    cin >> code;
+    string title = "";
+    cin.ignore();
+    cin.clear();
+    cout << "Enter title : ";
+    getline(cin, title);
+    BookNodePtr head = NULL;
+    
+    if (code >= 1001 && code <= 2000)
+    {
+        
+        head = library[0];
+       
+    }
+    else if (code >= 2001 && code <= 3000)
+    {
+       
+        head = library[1];
+    }
+    else if (code >= 3001 && code <= 4000)
+    {
+         
+        head = library[2];
+    }
+    else
+    {
+        cout << "Given id is invalid!" << endl;
+        return;
+    }
+    BookNodePtr target = book_exists(head, code, title);
+    if (target)
+    {
+        cout << endl;
+        cout << title << "(" << code << ") exists." << endl;
+        target->getData()->displayInfo();
+    }
+    else
+    {
+        cout << "No match" << endl;
+        return;
+    }
+}
+
+BookNodePtr book_exists(BookNodePtr head, int id, string title)
+{
+    BookNodePtr traverse = head;
+    while (traverse != NULL)
+    {
+        if (traverse->getData()->getCode() == id && 
+            traverse->getData()->getTitle() == title)
+        {
+            return traverse;
+        }
+        traverse = traverse->getLink();
+    }
+    return NULL;
+}
 
 void display_library_array(BookNodePtr library[3], int array_size)
 {

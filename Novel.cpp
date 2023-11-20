@@ -23,8 +23,9 @@ int Novel::get_publish_date() const
 
 void Novel::displayInfo() const
 {
-	std::cout << getCode() << " " << getTitle()
-		<< " " << get_publish_date() << " " << getAvailable() << " " << getRented() << std::endl;
+	std::cout << "category : " << "novel" << std::endl;
+	std::cout << "publish date : " << get_publish_date() << std::endl;
+	std::cout << getAvailable() << " available, " << getRented() << " rented" << std::endl;
 }
 
 int Novel::get_identification() const

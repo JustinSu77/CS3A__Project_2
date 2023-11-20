@@ -24,8 +24,11 @@ int ChildrenBook::getAge() const
 
 void ChildrenBook::displayInfo() const
 {
-	std::cout << getCode() << " " << getTitle() 
-		<< " " << getAge() << " " << getAvailable() << " " << getRented() << std::endl;
+	std::cout << "category : " << "childen" << std::endl;
+	std::cout << "age : " << getAge() << std::endl;
+	std::cout << getAvailable() << " available, " << getRented() << " rented" << std::endl;
+
+
 }
 
 int ChildrenBook::get_identification() const

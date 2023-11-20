@@ -24,8 +24,9 @@ std::string ComputerBook::getPublisher() const
 
 void ComputerBook::displayInfo() const
 {
-	std::cout << getCode() << " " << getTitle()
-		<< " " << getPublisher() << " " << getAvailable() << " " << getRented() << std::endl;
+	std::cout << "category : " << "computer" << std::endl;
+	std::cout << "publisher : " << getPublisher() << std::endl;
+	std::cout << getAvailable() << " available, " << getRented() << " rented" << std::endl;
 }
 
 int ComputerBook::get_identification() const
