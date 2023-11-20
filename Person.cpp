@@ -4,7 +4,8 @@ Person::Person() : id(0), name(""), count(0)
 {
 }
 
-Person::Person(int id, std::string name, int count) : Person(id, name, count)
+Person::Person(int id, std::string name, int count) : 
+	id(id), name(name), count(count)
 {
 
 }
