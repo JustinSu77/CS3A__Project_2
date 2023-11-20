@@ -4,11 +4,11 @@ class Node
 {
 public:
 	Node();
-	Node(T data, Node* nextNode);
+	Node(T data, Node* node);
 	void setData(T data);
 	void setLink(Node* nextNode);
 	T getData() const;
-	Node* getLink() const;
+	Node<T>* getLink() const;
 private:
 	T data;
 	Node* link;
@@ -22,10 +22,9 @@ Node<T>::Node()
 }
 
 template <typename T>
-Node<T>::Node(T data, Node* nextNode)
+Node<T>::Node(T data, Node* nextNode) : data(data), link(nextNode)
 {
-	this->data = data;
-	this->link = nextNode;
+	 
 }
 
 template<typename T>
@@ -49,7 +48,7 @@ T Node<T>::getData() const
 template<typename T>
 Node<T>* Node<T>::getLink() const
 {
-	return nullptr;
+	return link;
 }
 
  

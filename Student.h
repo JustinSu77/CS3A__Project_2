@@ -1,6 +1,6 @@
 #pragma once
 #include "Person.h"
-
+#include <iostream>
 class Student : public Person
 {
 	public:
@@ -10,6 +10,8 @@ class Student : public Person
 		void setSecondCode(int secondCode);
 		int getFirstCode() const;
 		int getSecondCode() const;
+		virtual void displayInfo() const;
+		virtual int get_identification() const;
 	private:
 		int code[2];
 };

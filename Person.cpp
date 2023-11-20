@@ -25,7 +25,7 @@ void Person::setCount(int count)
 	this->count = count;
 }
 
-int Person::getId(int count) const
+int Person::getId() const
 {
 	return id;
 }

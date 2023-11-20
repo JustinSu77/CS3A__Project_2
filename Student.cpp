@@ -31,3 +31,24 @@ int Student::getSecondCode() const
 {
 	return code[1];
 }
+
+void Student::displayInfo() const
+{
+	std::cout << getId() << " " << getName()<< " " << getCount();
+	if (getCount() == 1)
+	{
+		std::cout << code[0] << " ";
+	}
+	if (getCount() == 2)
+	{
+		std::cout << code[0] << " " <<  code[1] << " ";
+	}
+	std::cout << std::endl;
+}
+
+int Student::get_identification() const
+{
+	return getId();
+}
+
+

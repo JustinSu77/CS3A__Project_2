@@ -44,3 +44,26 @@ int Teacher::getThirdCode() const
 	return code[2];
 }
 
+void Teacher::displayInfo() const
+{
+	std::cout << getId() << " " << getName() << " " << getCount() << " ";
+	if (getCount() == 1)
+	{
+		std::cout << code[0];
+	}
+	if (getCount() == 2)
+	{
+		std::cout << code[0] << " " << code[1];
+	}
+	if (getCount() == 3)
+	{
+		std::cout << code[0] << " " << code[1] << " " << code[2];
+	}
+	std::cout << std::endl;
+}
+
+int Teacher::get_identification() const
+{
+	return getId();
+}
+

@@ -21,3 +21,14 @@ std::string ComputerBook::getPublisher() const
 {
 	return publisher;
 }
+
+void ComputerBook::displayInfo() const
+{
+	std::cout << getCode() << " " << getTitle()
+		<< " " << getPublisher() << " " << getAvailable() << " " << getRented() << std::endl;
+}
+
+int ComputerBook::get_identification() const
+{
+	return getCode();
+}

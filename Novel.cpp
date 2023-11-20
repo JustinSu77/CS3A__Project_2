@@ -20,3 +20,14 @@ int Novel::get_publish_date() const
 {
 	return publish_date;
 }
+
+void Novel::displayInfo() const
+{
+	std::cout << getCode() << " " << getTitle()
+		<< " " << get_publish_date() << " " << getAvailable() << " " << getRented() << std::endl;
+}
+
+int Novel::get_identification() const
+{
+	return getCode();
+}

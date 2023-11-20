@@ -1,4 +1,5 @@
 #include "ChildrenBook.h"
+#include <iostream>
 
 ChildrenBook::ChildrenBook() : Book(), age(0) 
 {
@@ -19,4 +20,15 @@ void ChildrenBook::setAge(int age)
 int ChildrenBook::getAge() const
 {
 	return age;
+}
+
+void ChildrenBook::displayInfo() const
+{
+	std::cout << getCode() << " " << getTitle() 
+		<< " " << getAge() << " " << getAvailable() << " " << getRented() << std::endl;
+}
+
+int ChildrenBook::get_identification() const
+{
+	return getCode();
 }
