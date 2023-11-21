@@ -12,7 +12,10 @@ class Student : public Person
 		int getSecondCode() const;
 		virtual void displayInfo() const;
 		virtual int getIdentification() const;
-		virtual void displayRentedInfo() const;
+		virtual void displayRentInfo() const;
+		virtual int getMaxBooksToRent() const;
+		virtual void setCodeByIndex(int book_code, int index);
+		virtual bool bookIsRented(int book_code) const;
 	private:
 		int code[2];
 };

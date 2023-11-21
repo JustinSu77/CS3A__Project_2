@@ -31,7 +31,7 @@ void ChildrenBook::displayInfo() const
 
 }
 
-int ChildrenBook::get_identification() const
+int ChildrenBook::getIdentification() const
 {
 	return getCode();
 }

@@ -8,7 +8,7 @@ class ComputerBook : public Book
 		void setPublisher(std::string publisher);
 		std::string getPublisher() const;
 		virtual void displayInfo() const;
-		virtual int get_identification() const;
+		virtual int getIdentification() const;
 	private:
 		std::string publisher;
 };

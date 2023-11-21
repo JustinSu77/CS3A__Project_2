@@ -29,7 +29,7 @@ void ComputerBook::displayInfo() const
 	std::cout << getAvailable() << " available, " << getRented() << " rented" << std::endl;
 }
 
-int ComputerBook::get_identification() const
+int ComputerBook::getIdentification() const
 {
 	return getCode();
 }

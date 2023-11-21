@@ -8,7 +8,7 @@ class ChildrenBook : public Book
 		void setAge(int age);
 		int getAge() const;
 		virtual void displayInfo() const;
-		virtual int get_identification() const;
+		virtual int getIdentification() const;
 	private:
 		int age;
 };

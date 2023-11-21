@@ -28,7 +28,7 @@ void Novel::displayInfo() const
 	std::cout << getAvailable() << " available, " << getRented() << " rented" << std::endl;
 }
 
-int Novel::get_identification() const
+int Novel::getIdentification() const
 {
 	return getCode();
 }

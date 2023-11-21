@@ -9,7 +9,7 @@ class Novel : public Book
 		void set_publish_date(int publish_date);
 		int get_publish_date() const;
 		virtual void displayInfo() const;
-		virtual int get_identification() const;
+		virtual int getIdentification() const;
 	private:
 		int publish_date;
 };
