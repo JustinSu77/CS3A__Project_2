@@ -14,10 +14,11 @@ class Book
 		std::string getTitle() const;
 		int getAvailable() const;
 		int getRented() const;
-		virtual void displayInfo() const = 0;
+		virtual void displaySearchedInfo() const = 0;
 		virtual int getIdentification() const = 0;
 		virtual void markRented() = 0;
 		virtual void markReturned() = 0;
+		virtual void displayInfo() const = 0;
 	private:
 		int code;
 		std::string title;

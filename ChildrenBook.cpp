@@ -22,7 +22,7 @@ int ChildrenBook::getAge() const
 	return age;
 }
 
-void ChildrenBook::displayInfo() const
+void ChildrenBook::displaySearchedInfo() const
 {
 	std::cout << "category : " << "children" << std::endl;
 	std::cout << "age : " << getAge() << std::endl;
@@ -44,4 +44,9 @@ void ChildrenBook::markReturned()
 {
 	setAvailable(getAvailable() + 1);
 	setRented(getRented() - 1);
+}
+
+void ChildrenBook::displayInfo() const
+{
+	std::cout << "* " << getTitle() << "(" << getCode() << ")" << " - " << " age " << getAge() <<  std::endl;
 }

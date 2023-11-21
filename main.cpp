@@ -38,6 +38,11 @@ BookNodePtr find_book_with_title(BookNodePtr library[3], int array_size,  string
 void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr person[2], int person_array_size);
 BookNodePtr find_book_with_code(BookNodePtr library[3], int array_size, int book_code);
 
+// Task 4: Show Information
+void show_info(PersonNodePtr person[2], int person_array_size, BookNodePtr library[3], int library_array_size);
+
+
+
 // Deallocate linked lists
 void deallocate_libray_array(BookNodePtr library[3], int array_size);
 void deallocate_person_array(PersonNodePtr person[2], int array_size);
@@ -112,7 +117,7 @@ int main()
                 cout << endl;
                 break;
             case 4:
-                cout << "Calling function to show information" << endl;
+                show_info(person, person_array_size, library, library_array_size);
                 cout << endl;
                 break;
             case 5:
@@ -267,7 +272,7 @@ void search_book(BookNodePtr library[3], int array_size)
         }
         cout << endl;
         cout << title << "(" << code << ") exists." << endl;
-        target->getData()->displayInfo();
+        target->getData()->displaySearchedInfo();
     }
     catch (const char* message)
     {
@@ -378,7 +383,7 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
     }
     catch (int exception)
     {
-        cout << "You have reached your maximum books to be rented of  " << rented << endl;
+        cout << "You have reached your maximum books to be rented of  " << exception << endl;
         return;
     }
     wanted_person->getData()->displayRentInfo();
@@ -510,7 +515,7 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
     }
     catch (int exception)
     {
-        cout << "User " << id << "did not rent book with id " << book_code  << endl;
+        cout << "User " << id << "did not rent book with id " << exception  << endl;
         return;
     }
     cout << endl;
@@ -555,6 +560,79 @@ BookNodePtr find_book_with_code(BookNodePtr library[3], int array_size, int book
         traverse = traverse->getLink();
     }
     return NULL;
+}
+
+void show_info(PersonNodePtr person[2], int person_array_size, BookNodePtr library[3], int library_array_size)
+{
+    int id = 0;
+    cout << "Enter your id   : ";
+    cin >> id;
+  
+    cin.ignore();
+    cin.clear();
+    string name = "";
+    cout << "Enter your name : ";
+    try
+    {
+        getline(cin, name);
+        if (name.empty() || name.find_first_not_of(' ') == name.npos)
+        {
+            throw "Given title should not be empty!";
+        }
+    }
+    catch (const char* message)
+    {
+        cout << message << endl;
+        return;
+    }
+    PersonNodePtr head = nullptr;
+    if (id >= 1 || id <= 100)
+    {
+        head = person[0];
+    }
+    else
+    {
+        head = person[1];
+    }
+    PersonNodePtr wanted_person = nullptr;
+    try
+    {
+        wanted_person = person_exists(head, id);
+        if (wanted_person == NULL)
+        {
+            throw id;
+        }
+    }
+    catch (int exception)
+    {
+        cout << endl;
+        cout << "Person with id of " << exception  << " does not exist" << endl;
+        return;
+    }
+    int maxBooksToRent = wanted_person->getData()->getMaxBooksToRent();
+    for (int i = 0; i < maxBooksToRent; i++)
+    {
+        int book_code = wanted_person->getData()->getCodeAtIndex(i);
+        BookNodePtr book = nullptr;
+        if (book_code != -1)
+        {
+            try
+            {
+                 book = find_book_with_code(library, library_array_size, book_code);
+                 if (book == NULL)
+                 {
+                     throw book_code;
+                 }
+            }
+            catch (int exception)
+            {
+                cout << "Book with id of " << exception << " does not exist" << endl;
+                return;
+            }
+            book->getData()->displayInfo();
+        }
+    }
+    
 }
 
 void deallocate_libray_array(BookNodePtr library[3], int array_size)
@@ -604,7 +682,7 @@ void display_library_array(BookNodePtr library[3], int array_size)
         
         while (traverse != NULL)
         {
-            traverse->getData()->displayInfo();
+            traverse->getData()->displaySearchedInfo();
             traverse = traverse->getLink();
         }
     }

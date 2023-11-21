@@ -6,15 +6,12 @@ class Student : public Person
 	public:
 		Student();
 		Student(int id, std::string name, int count, int firstCode, int secondCode);
-		void setFirstCode(int firstCode);
-		void setSecondCode(int secondCode);
-		int getFirstCode() const;
-		int getSecondCode() const;
+		
+		virtual int getCodeAtIndex(int index) const;
 		virtual void displayInfo() const;
 		virtual int getIdentification() const;
 		virtual void displayRentInfo() const;
 		virtual int getMaxBooksToRent() const;
-		virtual void setCodeByIndex(int book_code, int index);
 		virtual bool hasRentedBookWithGivenCode(int book_code) const;
 		virtual void rentBook(int book_code);
 		virtual void returnBook(int book_code);

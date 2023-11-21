@@ -21,7 +21,7 @@ int Novel::get_publish_date() const
 	return publish_date;
 }
 
-void Novel::displayInfo() const
+void Novel::displaySearchedInfo() const
 {
 	std::cout << "category : " << "novel" << std::endl;
 	std::cout << "publish date : " << get_publish_date() << std::endl;
@@ -43,4 +43,9 @@ void Novel::markReturned()
 {
 	setAvailable(getAvailable() + 1);
 	setRented(getRented() - 1);
+}
+
+void Novel::displayInfo() const
+{
+	std::cout << "* " << getTitle() << "(" << getCode() << ")" << " - " << " publish date " << get_publish_date() << std::endl;
 }

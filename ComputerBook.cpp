@@ -22,7 +22,7 @@ std::string ComputerBook::getPublisher() const
 	return publisher;
 }
 
-void ComputerBook::displayInfo() const
+void ComputerBook::displaySearchedInfo() const
 {
 	std::cout << "category : " << "computer" << std::endl;
 	std::cout << "publisher : " << getPublisher() << std::endl;
@@ -44,4 +44,10 @@ void ComputerBook::markReturned()
 {
 	setAvailable(getAvailable() + 1);
 	setRented(getRented() - 1);
+}
+
+void ComputerBook::displayInfo() const
+{
+	std::cout << "* " << getTitle() << "(" << getCode() << ")" << " - " 
+		<< " publisher  " << getPublisher() << std::endl;
 }

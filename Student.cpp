@@ -12,24 +12,17 @@ Student::Student(int id, std::string name, int count, int firstCode, int secondC
 	code[1] = secondCode;
 }
 
-void Student::setFirstCode(int firstCode)
-{
-	code[0] = firstCode;
-}
+ 
 
-void Student::setSecondCode(int secondCode)
+int Student::getCodeAtIndex(int index) const
 {
-	code[1] = secondCode;
-}
+	if (index < 0 || index > getMaxBooksToRent())
+	{
+		std::cout << "Given index is out of bounds" << std::endl;
+		exit(1);
+	}
 
-int Student::getFirstCode() const
-{
-	return code[0];
-}
-
-int Student::getSecondCode() const
-{
-	return code[1];
+	return code[index];
 }
 
 void Student::displayInfo() const
@@ -73,15 +66,7 @@ int Student::getMaxBooksToRent() const
 }
 
 
-void Student::setCodeByIndex(int book_code, int index)
-{
-	if (index < 0 || index > getMaxBooksToRent())
-	{
-		std::cout << "Error assigning code to Student" << std::endl;
-		exit(1);
-	}
-	code[index] = book_code;
-}
+ 
 
 bool Student::hasRentedBookWithGivenCode(int book_code) const
 {
