@@ -46,9 +46,27 @@ void Student::displayInfo() const
 	std::cout << std::endl;
 }
 
-int Student::get_identification() const
+int Student::getIdentification() const
 {
 	return getId();
 }
+
+void Student::displayRentedInfo() const
+{
+	if (getCount() == 0)
+	{
+		std::cout << "You are " << getName() << ".  " << "You rented " << getCount() << "books." << std::endl;
+	}
+	else if (getCount() == 1)
+	{
+		std::cout << "You are " << getName() << ".  " << "You rented " << getCount() << "book." << std::endl;
+	}
+	else
+	{
+		std::cout << "You are " << getName() << ".  " << "You already rented " << getCount() << "books." << std::endl;
+	}
+
+}
+	
 
 

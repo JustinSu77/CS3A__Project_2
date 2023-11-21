@@ -18,7 +18,7 @@ template <typename T>
 Node<T>::Node()
 {
 	data = NULL;
-	link = NULL;
+	link = nullptr;
 }
 
 template <typename T>

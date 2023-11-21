@@ -13,7 +13,8 @@ class Person
 		std::string getName() const;
 		int getCount() const;
 		virtual void displayInfo() const = 0;
-		virtual int get_identification() const = 0;
+		virtual int getIdentification() const = 0;
+		virtual void displayRentInfo() const = 0;
 	private:
 		int id;
 		std::string name;

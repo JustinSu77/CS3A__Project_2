@@ -11,7 +11,8 @@ class Student : public Person
 		int getFirstCode() const;
 		int getSecondCode() const;
 		virtual void displayInfo() const;
-		virtual int get_identification() const;
+		virtual int getIdentification() const;
+		virtual void displayRentedInfo() const;
 	private:
 		int code[2];
 };

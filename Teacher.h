@@ -13,7 +13,8 @@ class Teacher : public Person
 		int getSecondCode() const;
 		int getThirdCode() const;
 		virtual void displayInfo() const;
-		virtual int get_identification() const;
+		virtual int getIdentification() const;
+		virtual void displayRentedInfo() const;
 	private:
 		int code[3];
 };
