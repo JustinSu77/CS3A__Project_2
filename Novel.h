@@ -10,6 +10,8 @@ class Novel : public Book
 		int get_publish_date() const;
 		virtual void displayInfo() const;
 		virtual int getIdentification() const;
+		virtual void markRented();
+		virtual void markReturned();
 	private:
 		int publish_date;
 };

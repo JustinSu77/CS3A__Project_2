@@ -9,6 +9,8 @@ class ComputerBook : public Book
 		std::string getPublisher() const;
 		virtual void displayInfo() const;
 		virtual int getIdentification() const;
+		virtual void markRented();
+		virtual void markReturned();
 	private:
 		std::string publisher;
 };

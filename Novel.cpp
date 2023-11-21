@@ -32,3 +32,15 @@ int Novel::getIdentification() const
 {
 	return getCode();
 }
+
+void Novel::markRented()
+{
+	setAvailable(getAvailable() - 1);
+	setRented(getRented() + 1);
+}
+
+void Novel::markReturned()
+{
+	setAvailable(getAvailable() + 1);
+	setRented(getRented() - 1);
+}

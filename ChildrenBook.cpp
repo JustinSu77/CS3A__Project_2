@@ -24,14 +24,24 @@ int ChildrenBook::getAge() const
 
 void ChildrenBook::displayInfo() const
 {
-	std::cout << "category : " << "childen" << std::endl;
+	std::cout << "category : " << "children" << std::endl;
 	std::cout << "age : " << getAge() << std::endl;
 	std::cout << getAvailable() << " available, " << getRented() << " rented" << std::endl;
-
-
 }
 
 int ChildrenBook::getIdentification() const
 {
 	return getCode();
+}
+
+void ChildrenBook::markRented()
+{
+	setAvailable(getAvailable() - 1);
+	setRented(getRented() + 1);
+}
+
+void ChildrenBook::markReturned()
+{
+	setAvailable(getAvailable() + 1);
+	setRented(getRented() - 1);
 }

@@ -16,6 +16,8 @@ class Book
 		int getRented() const;
 		virtual void displayInfo() const = 0;
 		virtual int getIdentification() const = 0;
+		virtual void markRented() = 0;
+		virtual void markReturned() = 0;
 	private:
 		int code;
 		std::string title;

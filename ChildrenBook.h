@@ -9,6 +9,8 @@ class ChildrenBook : public Book
 		int getAge() const;
 		virtual void displayInfo() const;
 		virtual int getIdentification() const;
+		virtual void markRented();
+		virtual void markReturned();
 	private:
 		int age;
 };

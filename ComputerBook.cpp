@@ -33,3 +33,15 @@ int ComputerBook::getIdentification() const
 {
 	return getCode();
 }
+
+void ComputerBook::markRented()
+{
+	setAvailable(getAvailable() - 1);
+	setRented(getRented() + 1);
+}
+
+void ComputerBook::markReturned()
+{
+	setAvailable(getAvailable() + 1);
+	setRented(getRented() - 1);
+}

@@ -86,7 +86,7 @@ void Teacher::displayRentInfo() const
 
 int Teacher::getMaxBooksToRent() const
 {
-	return 3;
+	return sizeof(code) / sizeof(int);
 }
 
 void Teacher::setCodeByIndex(int book_code, int index)
@@ -99,7 +99,7 @@ void Teacher::setCodeByIndex(int book_code, int index)
 	code[index] = book_code;
 }
 
-bool Teacher::bookIsRented(int book_code) const
+bool Teacher::hasRentedBookWithGivenCode(int book_code) const
 {
 	for (int i = 0; i < getMaxBooksToRent(); i++)
 	{
@@ -109,5 +109,31 @@ bool Teacher::bookIsRented(int book_code) const
 		}
 	}
 	return false;
+}
+
+void Teacher::rentBook(int book_code)
+{
+	for (int i = 0; i < getMaxBooksToRent(); i++)
+	{
+		if (code[i] == -1)
+		{
+			code[i] = book_code;
+			break;
+		}
+	}
+	setCount(getCount() + 1);
+}
+
+void Teacher::returnBook(int book_code)
+{
+	for (int i = 0; i < getMaxBooksToRent(); i++)
+	{
+		if (code[i] == book_code)
+		{
+			code[i] = -1;
+			break;
+		}
+	}
+	setCount(getCount() - 1);
 }
 

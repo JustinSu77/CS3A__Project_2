@@ -15,7 +15,9 @@ class Student : public Person
 		virtual void displayRentInfo() const;
 		virtual int getMaxBooksToRent() const;
 		virtual void setCodeByIndex(int book_code, int index);
-		virtual bool bookIsRented(int book_code) const;
+		virtual bool hasRentedBookWithGivenCode(int book_code) const;
+		virtual void rentBook(int book_code);
+		virtual void returnBook(int book_code);
 	private:
 		int code[2];
 };

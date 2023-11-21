@@ -11,7 +11,6 @@
 #include "Teacher.h"
 using namespace std;
 
- 
 typedef Node<Book*>* BookNodePtr;
 typedef Node<Person*>* PersonNodePtr;
 void show_menu(char& user_input);
@@ -37,7 +36,7 @@ BookNodePtr find_book_with_title(BookNodePtr library[3], int array_size,  string
 
 // Task 3: Return a book
 void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr person[2], int person_array_size);
-
+BookNodePtr find_book_with_code(BookNodePtr library[3], int array_size, int book_code);
 
 // Deallocate linked lists
 void deallocate_libray_array(BookNodePtr library[3], int array_size);
@@ -109,7 +108,7 @@ int main()
                 cout << endl;
                 break;
             case 3:
-                cout << "Calling a function to return a book " << endl;
+                return_book(library, library_array_size, person, person_array_size);
                 cout << endl;
                 break;
             case 4:
@@ -359,7 +358,7 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         book = find_book_with_title(library, library_array_size, title);
         if (book == NULL)
         {
-            throw "Book does not exist";
+            throw "Book does is not available";
         }
     }
     catch (const char* message)
@@ -368,20 +367,32 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         cout << message << endl;
         return;
     }
-    
-    wanted_person->getData()->displayRentInfo();
-    if (wanted_person->getData()->getCount() < wanted_person->getData()->getMaxBooksToRent())
+    int rented = 0;
+    try
     {
+       rented = wanted_person->getData()->getCount();
+        if (rented == wanted_person->getData()->getMaxBooksToRent())
+        {
+            throw rented;
+        }
+    }
+    catch (int exception)
+    {
+        cout << "You have reached your maximum books to be rented of  " << rented << endl;
+        return;
+    }
+    wanted_person->getData()->displayRentInfo();
+ 
         char userInput = ' ';
         cout << "Do want to rent '" << title << "' (y/n)? ";
         cin >> userInput;
         if (userInput == 'Y' || userInput == 'y')
         {
-            int rented = 0;
+            int available = 0;
             try
             {
-                rented = book->getData()->getRented();
-                if (rented == 0)
+                available = book->getData()->getAvailable();
+                if (available == 0)
                 {
                     throw book->getData()->getTitle();
                 }
@@ -391,22 +402,12 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
                 cout << "All copies of " << message << " have been rented out." << endl;
                 return;
             }
-          
-            int newAvailable = book->getData()->getAvailable() - 1;
-            int newRented = book->getData()->getRented() + 1;
-            book->getData()->setAvailable(newAvailable);
-            book->getData()->setRented(newRented);
             int book_code = book->getData()->getCode();
-            int count = wanted_person->getData()->getCount();
-            wanted_person->getData()->setCodeByIndex(book_code, count);
-            wanted_person->getData()->setCount(count + 1);
-            cout << "**** Rented succeed. Check your info!" << endl;
+            wanted_person->getData()->rentBook(book_code);
+            book->getData()->markRented();
+            cout << "**** Rent succeed. Check your info!" << endl;
         }
-    }
-    else
-    {
-        cout << "You already rented " << wanted_person->getData()->getMaxBooksToRent() << " books." << endl;
-    }
+    
 }
 
 PersonNodePtr person_exists(PersonNodePtr head, int id)
@@ -460,29 +461,101 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         return;
     }
     int book_code = 0;
-    cout << "Enter the book code to return : " << endl;
+    cout << "Enter the book code to return : ";
+    cin >> book_code;
+
+    BookNodePtr book = nullptr;
     try
     {
-        cin >> book_code;
-        if (book_code < 1001 || book_code > 4000)
+        book = find_book_with_code(library, library_array_size, book_code);
+
+    }
+    catch (int exception)
+    {
+        cout << "Book with id " << exception << " does not exist" << endl;
+        return;
+    }
+
+    PersonNodePtr personPtr = nullptr;
+    if (id >= 1 && id <= 100)
+    {
+        personPtr = person[0];
+    }
+    else
+    {
+        personPtr = person[1];
+    }
+    PersonNodePtr wanted_person = nullptr;
+    try
+    {
+        wanted_person = person_exists(personPtr, id);
+        if (wanted_person == NULL)
         {
-            throw "Given book code is invalid";
+            throw "Person with given id does not exist";
         }
+
     }
     catch (const char* message)
     {
         cout << message << endl;
         return;
     }
-    cout << "Id: " << id << endl;
-    cout << "Book Code: " << book_code <<  endl;
+    try
+    {
+        bool book_rented = wanted_person->getData()->hasRentedBookWithGivenCode(book_code);
+        if (!book_rented)
+        {
+            throw book_code;
+        }
+    }
+    catch (int exception)
+    {
+        cout << "User " << id << "did not rent book with id " << book_code  << endl;
+        return;
+    }
+    cout << endl;
+    cout << endl;
+    char userInput = ' ';
+    cout << "Do you want to return `" << book->getData()->getTitle() << "` (y/n) ?";
+    cin >> userInput;
+    if (userInput == 'Y' || userInput == 'y')
+    {
+        wanted_person->getData()->returnBook(book_code);
+        book->getData()->markReturned();
+        cout << "**** Return Succeed. Check your info!" << endl;
+    }
+
 }
 
- 
-
- 
-
- 
+BookNodePtr find_book_with_code(BookNodePtr library[3], int array_size, int book_code)
+{
+    BookNodePtr traverse = nullptr;
+    if (book_code >= 1001 && book_code <= 2000)
+    {
+        traverse = library[0];
+    }
+    else if (book_code >= 2001 && book_code <= 3000)
+    {
+        traverse = library[1];
+    }
+    else if(book_code >= 3001 && book_code <= 4000)
+    {
+        traverse = library[2];
+    }
+    else
+    {
+        throw book_code;
+    }
+    while (traverse != NULL)
+    {
+        if (traverse->getData()->getCode() == book_code)
+        {
+            return traverse;
+        }
+        traverse = traverse->getLink();
+    }
+    return NULL;
+}
 
 void deallocate_libray_array(BookNodePtr library[3], int array_size)
 {
