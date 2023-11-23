@@ -49,3 +49,16 @@ void Novel::displayInfo() const
 {
 	std::cout << "* " << getTitle() << "(" << getCode() << ")" << " - " << " publish date " << get_publish_date() << std::endl;
 }
+
+void Novel::displayAllInfo() const
+{
+	std::cout << getCode() << " " << get_clean_title() << " " << get_publish_date() 
+		<< " " << getAvailable() << " " << getRented() << std::endl;
+}
+
+std::string Novel::get_clean_title() const
+{
+	std::string title = getTitle();
+	std::replace(title.begin(), title.end(), '_', ' ');
+	return title;
+}

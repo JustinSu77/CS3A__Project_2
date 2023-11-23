@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
- 
+#include <algorithm>
 class Book
 {
 	public:
@@ -19,6 +19,8 @@ class Book
 		virtual void markRented() = 0;
 		virtual void markReturned() = 0;
 		virtual void displayInfo() const = 0;
+		virtual void displayAllInfo() const = 0;
+		virtual std::string get_clean_title() const = 0;
 	private:
 		int code;
 		std::string title;

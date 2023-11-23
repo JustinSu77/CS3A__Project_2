@@ -21,8 +21,11 @@ void Teacher::setCodeAtIndex(int index, int book_code)
 		std::cout << "Given index is out of bounds" << std::endl;
 		exit(1);
 	}
+
 	code[index] = book_code;
 }
+
+
 
 int Teacher::getCodeAtIndex(int index) const
 {

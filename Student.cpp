@@ -12,6 +12,17 @@ Student::Student(int id, std::string name, int count, int firstCode, int secondC
 	code[1] = secondCode;
 }
 
+void Student::setCodeAtIndex(int index, int book_code)
+{
+	if (index < 0 || index > getMaxBooksToRent())
+	{
+		std::cout << "Given index is out of bounds" << std::endl;
+		exit(1);
+	}
+
+	code[index] = book_code;
+}
+
  
 
 int Student::getCodeAtIndex(int index) const

@@ -12,6 +12,8 @@ class ComputerBook : public Book
 		virtual void markRented();
 		virtual void markReturned();
 		virtual void displayInfo() const;
+		virtual void displayAllInfo() const;
+		virtual std::string get_clean_title() const;
 	private:
 		std::string publisher;
 };

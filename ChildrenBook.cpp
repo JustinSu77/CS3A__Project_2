@@ -50,3 +50,16 @@ void ChildrenBook::displayInfo() const
 {
 	std::cout << "* " << getTitle() << "(" << getCode() << ")" << " - " << " age " << getAge() <<  std::endl;
 }
+
+void ChildrenBook::displayAllInfo() const
+{
+	std::cout << getCode() << " " << get_clean_title() << " " << getAge() << " " << getAvailable() << " " << getRented() << std::endl;
+}
+
+std::string ChildrenBook::get_clean_title() const
+{
+	std::string title = getTitle();
+	std::replace(title.begin(), title.end(), '_', ' ');
+	return title;
+
+}

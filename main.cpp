@@ -10,9 +10,11 @@
 #include "Student.h"
 #include "Teacher.h"
 using namespace std;
+using namespace justin_su;
 
 typedef Node<Book*>* BookNodePtr;
 typedef Node<Person*>* PersonNodePtr;
+
 void show_menu(char& user_input);
 
 // Fill library
@@ -41,6 +43,8 @@ BookNodePtr find_book_with_code(BookNodePtr library[3], int array_size, int book
 // Task 4: Show Information
 void show_info(PersonNodePtr person[2], int person_array_size, BookNodePtr library[3], int library_array_size);
 
+// Task 5: Show all books
+void show_all_books(BookNodePtr library[3], int library_array_size, string book_types[], int book_types_size);
 
 
 // Deallocate linked lists
@@ -82,7 +86,8 @@ int main()
     fill_person_array(person, inputFile);
     //display_person_array(person, person_array_size);
     inputFile.close();
-   
+    string book_types[] = { "Children", "Computer", "Novel" };
+    int book_types_size = sizeof(book_types) / sizeof(string);
    
    
    char user_input = ' ';
@@ -121,7 +126,8 @@ int main()
                 cout << endl;
                 break;
             case 5:
-                cout << "Calling function to show all books" << endl;
+               
+                show_all_books(library, library_array_size, book_types, book_types_size);
                 cout << endl;
                 break;
             default:
@@ -629,10 +635,27 @@ void show_info(PersonNodePtr person[2], int person_array_size, BookNodePtr libra
                 cout << "Book with id of " << exception << " does not exist" << endl;
                 return;
             }
+            cout << endl;
+            cout << "You rented " << wanted_person->getData()->getCount() << " books." << endl;
             book->getData()->displayInfo();
         }
     }
     
+}
+
+void show_all_books(BookNodePtr library[3], int library_array_size, string book_types[], int book_types_size)
+{
+    for (int i = 0; i < library_array_size; i++ )
+    {
+        cout << "     " << book_types[i] << "     " << endl;
+        BookNodePtr book = library[i];
+        cout << endl;
+    }
+}
+
+void show_all_books(BookNodePtr library[3], int array_size)
+{
+
 }
 
 void deallocate_libray_array(BookNodePtr library[3], int array_size)

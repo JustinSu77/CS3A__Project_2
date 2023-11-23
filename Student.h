@@ -6,7 +6,7 @@ class Student : public Person
 	public:
 		Student();
 		Student(int id, std::string name, int count, int firstCode, int secondCode);
-		
+		void setCodeAtIndex(int index, int book_code);
 		virtual int getCodeAtIndex(int index) const;
 		virtual void displayInfo() const;
 		virtual int getIdentification() const;
