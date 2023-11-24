@@ -1,6 +1,6 @@
 #pragma once
 #include "Book.h"
-
+#include <iomanip>
 class Novel : public Book
 {
 	public:
@@ -14,7 +14,7 @@ class Novel : public Book
 		virtual void markReturned();
 		virtual void displayInfo() const;
 		virtual void displayAllInfo() const;
-		virtual std::string get_clean_title() const;
+		virtual std::string get_formatted_title() const;
 	private:
 		int publish_date;
 };

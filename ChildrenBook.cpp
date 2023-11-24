@@ -1,5 +1,4 @@
 #include "ChildrenBook.h"
-#include <iostream>
 
 ChildrenBook::ChildrenBook() : Book(), age(0) 
 {
@@ -53,10 +52,10 @@ void ChildrenBook::displayInfo() const
 
 void ChildrenBook::displayAllInfo() const
 {
-	std::cout << getCode() << " " << get_clean_title() << " " << getAge() << " " << getAvailable() << " " << getRented() << std::endl;
+	std::cout << " " << getCode() << std::setw(30) << get_formatted_title() << std::setw(4) << getAge() << std::setw(10) << getAvailable() << std::setw(7) << getRented() << std::endl;
 }
 
-std::string ChildrenBook::get_clean_title() const
+std::string ChildrenBook::get_formatted_title() const
 {
 	std::string title = getTitle();
 	std::replace(title.begin(), title.end(), '_', ' ');

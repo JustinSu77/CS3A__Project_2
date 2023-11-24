@@ -1,5 +1,5 @@
 #include "Book.h"
-
+#include <iomanip>
 class ComputerBook : public Book
 {
 	public:
@@ -13,7 +13,7 @@ class ComputerBook : public Book
 		virtual void markReturned();
 		virtual void displayInfo() const;
 		virtual void displayAllInfo() const;
-		virtual std::string get_clean_title() const;
+		virtual std::string get_formatted_title() const;
 	private:
 		std::string publisher;
 };

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <iomanip>
 #include "Node.h"
 #include "Book.h"
 #include "ChildrenBook.h"
@@ -643,19 +644,44 @@ void show_info(PersonNodePtr person[2], int person_array_size, BookNodePtr libra
     
 }
 
-void show_all_books(BookNodePtr library[3], int library_array_size, string book_types[], int book_types_size)
+void show_all_books(BookNodePtr library[3], int array_size, string book_types[], int book_type_size)
 {
-    for (int i = 0; i < library_array_size; i++ )
+    for (int i = 0; i < array_size; i++)
     {
-        cout << "     " << book_types[i] << "     " << endl;
-        BookNodePtr book = library[i];
+        string activity = book_types[i];
+        if (activity == "Children")
+        {
+            cout << "===========================================================" << endl;
+            cout << "                Children Books                             " << endl;
+            cout << "===========================================================" << endl;
+            cout << " code              title             age  available rented" <<  endl;
+            cout << "-----------------------------------------------------------" << endl;
+        }
+        else if (activity == "Computer")
+        {
+            cout << "========================================================================" << endl;
+            cout << "                       Computer Books                             " << endl;
+            cout << "========================================================================" << endl;
+            cout << " code                title                 publisher    available rented" << endl;
+            cout << "------------------------------------------------------------------------" << endl;
+        }
+        else if (activity == "Novel")
+        {
+
+            cout << "=================================================================" << endl;
+            cout << "                       Novel Books                             " << endl;
+            cout << "=================================================================" << endl;
+            cout << " code                 title       publish date    available rented" << endl;
+            cout << "-----------------------------------------------------------------" << endl;
+        }
+        BookNodePtr book_list_traverse = library[i];
+        while (book_list_traverse != NULL)
+        {
+            book_list_traverse->getData()->displayAllInfo();
+            book_list_traverse = book_list_traverse->getLink();
+        }
         cout << endl;
     }
-}
-
-void show_all_books(BookNodePtr library[3], int array_size)
-{
-
 }
 
 void deallocate_libray_array(BookNodePtr library[3], int array_size)

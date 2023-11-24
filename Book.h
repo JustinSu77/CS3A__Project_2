@@ -20,7 +20,7 @@ class Book
 		virtual void markReturned() = 0;
 		virtual void displayInfo() const = 0;
 		virtual void displayAllInfo() const = 0;
-		virtual std::string get_clean_title() const = 0;
+		virtual std::string get_formatted_title() const = 0;
 	private:
 		int code;
 		std::string title;

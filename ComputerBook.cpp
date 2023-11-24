@@ -54,10 +54,10 @@ void ComputerBook::displayInfo() const
 
 void ComputerBook::displayAllInfo() const
 {
-	std::cout << getCode() << " " << get_clean_title() << " " << getPublisher() << " " << getAvailable() << " " << getRented() << std::endl;
+	std::cout << " " << getCode() << std::setw(30) << get_formatted_title() << std::setw(20) << getPublisher() << std::setw(7) << getAvailable() << std::setw(7) << getRented() << std::endl;
 }
 
-std::string ComputerBook::get_clean_title() const
+std::string ComputerBook::get_formatted_title() const
 {
 	std::string title = getTitle();
 	std::replace(title.begin(), title.end(), '_', ' ');
