@@ -1,4 +1,3 @@
-#include <iostream>
 #include <fstream>
 #include <string>
 #include <iomanip>
@@ -11,7 +10,7 @@
 #include "Student.h"
 #include "Teacher.h"
 using namespace std;
-using namespace justin_su;
+
 
 typedef Node<Book*>* BookNodePtr;
 typedef Node<Person*>* PersonNodePtr;
@@ -236,57 +235,56 @@ void fill_library_array(BookNodePtr library[3], ifstream& inputFile)
 
 void search_book(BookNodePtr library[3], int array_size)
 {
-    cout << endl;
     int code = 0;
-    cout << "Enter code : ";
-    cin >> code;
     string title = "";
-    cin.ignore();
-    cin.clear();
-    cout << "Enter title : ";
-    getline(cin, title);
     BookNodePtr head = NULL;
-    
-    if (code >= 1001 && code <= 2000)
-    {
-        
-        head = library[0];
-       
-    }
-    else if (code >= 2001 && code <= 3000)
-    {
-       
-        head = library[1];
-    }
-    else if (code >= 3001 && code <= 4000)
-    {
-         
-        head = library[2];
-    }
-    else
-    {
-        cout << endl;
-        cout << "Given id is invalid!" << endl;
-        return;
-    }
-
+    BookNodePtr requested_book = NULL;
     try
     {
-        BookNodePtr target = find_book_with_given_id_and_title(head, code, title);
-        if (target == NULL)
+        cout << endl;
+        cout << "Enter code : ";
+        cin >> code;
+        cin.ignore();
+        cin.clear();
+        cout << "Enter title : ";
+        getline(cin, title);
+        if (code >= 1001 && code <= 2000)
+        {
+
+            head = library[0];
+        }
+        else if (code >= 2001 && code <= 3000)
+        {
+            head = library[1];
+        }
+        else if (code >= 3001 && code <= 4000)
+        {
+            head = library[2];
+        }
+        else
+        {
+            throw "Given id not valid!";
+        }
+        if (title.empty() || title.find_first_not_of(' ') == title.npos)
+        {
+            throw "Given title should not be empty!";
+        }
+        requested_book = find_book_with_given_id_and_title(head, code, title);
+        if (requested_book == NULL)
         {
             throw "No Match";
         }
-        cout << endl;
-        cout << title << "(" << code << ") exists." << endl;
-        target->getData()->displaySearchedInfo();
+
     }
     catch (const char* message)
     {
         cout << endl;
         cout << message << endl;
+        return;
     }
-    
+    cout << endl;
+    cout << title << "(" << code << ") exists." << endl;
+    requested_book->getData()->displaySearchedInfo();
 }
 
 BookNodePtr find_book_with_given_id_and_title(BookNodePtr head, int id, string title)
@@ -306,96 +304,54 @@ BookNodePtr find_book_with_given_id_and_title(BookNodePtr head, int id, string t
 
 void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr person[2], int person_array_size)
 {
-    cout << endl;
     int id = 0;
-    cout << "Enter your id    : ";
+    string title = "";
+    PersonNodePtr personPtr = NULL;
+    PersonNodePtr wanted_person = NULL;
+    BookNodePtr book = NULL;
+    int rented = 0;
+    char userInput = ' ';
     try
     {
+        cout << endl;
+        cout << "Enter your id    : ";
         cin >> id;
         if (id < 1 || id > 300)
         {
             throw "Given id is invalid";
         }
-        
-    }
-    catch (const char* message)
-    {
-        cout << message << endl;
-        return;
-    }
-    cin.ignore();
-    cin.clear();
-    string title = "";
-    cout << "Enter book title : ";
-    try
-    {
+        cin.ignore();
+        cin.clear();
+        cout << "Enter book title : ";
         getline(cin, title);
         if (title.empty() || title.find_first_not_of(' ') == title.npos)
         {
             throw "Given title should not be empty!";
         }
-    }
-    catch (const char* message)
-    {
-        cout << message << endl;
-        return;
-    }
-  
-    PersonNodePtr personPtr = nullptr;
-    if (id >= 1 && id <= 100)
-    {
+        if (id >= 1 && id <= 100)
+        {
             personPtr = person[0];
-    }
-    else
-    {
+        }
+        else
+        {
             personPtr = person[1];
-    }
-    PersonNodePtr wanted_person = nullptr;
-    try
-    {
+        }
         wanted_person = person_exists(personPtr, id);
         if (wanted_person == NULL)
         {
             throw "Person with given id does not exist";
         }
-
-    }
-    catch (const char* message)
-    {
-        cout << message << endl;
-    }
-    BookNodePtr book = NULL;
-    try
-    {
         book = find_book_with_title(library, library_array_size, title);
         if (book == NULL)
         {
             throw "Book does is not available";
         }
-    }
-    catch (const char* message)
-    {
-        cout << endl;
-        cout << message << endl;
-        return;
-    }
-    int rented = 0;
-    try
-    {
-       rented = wanted_person->getData()->getCount();
+        rented = wanted_person->getData()->getCount();
         if (rented == wanted_person->getData()->getMaxBooksToRent())
         {
             throw rented;
         }
-    }
-    catch (int exception)
-    {
-        cout << "You have reached your maximum books to be rented of  " << exception << endl;
-        return;
-    }
-    wanted_person->getData()->displayRentInfo();
- 
-        char userInput = ' ';
+        wanted_person->getData()->displayRentInfo();
         cout << "Do want to rent '" << title << "' (y/n)? ";
         cin >> userInput;
         if (userInput == 'Y' || userInput == 'y')
@@ -419,7 +375,17 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
             book->getData()->markRented();
             cout << "**** Rent succeed. Check your info!" << endl;
         }
-    
+    }
+    catch (const char* message)
+    {
+        cout << message << endl;
+        return;
+    }
+    catch (int exception)
+    {
+        cout << "You have reached your maximum books to be rented of  " << exception << endl;
+        return;
+    }
 }
 
 PersonNodePtr person_exists(PersonNodePtr head, int id)

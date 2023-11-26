@@ -1,6 +1,4 @@
 #pragma once
-namespace justin_su
-{
 	template<typename T>
 	class Node
 	{
@@ -52,7 +50,7 @@ namespace justin_su
 	{
 		return link;
 	}
-}
+
  
 
 

@@ -52,7 +52,8 @@ void Novel::displayInfo() const
 
 void Novel::displayAllInfo() const
 {
-	std::cout << " " << getCode() << std::setw(25) << get_formatted_title() << std::setw(12) << get_publish_date() << std::setw(15) << getAvailable() << std::setw(8) << getRented() << std::endl;
+	std::cout << " " << getCode() << std::setw(25) << get_formatted_title() << std::setw(12) 
+		<< get_publish_date() << std::setw(15) << getAvailable() << std::setw(8) << getRented() << std::endl;
 }
 
 std::string Novel::get_formatted_title() const
