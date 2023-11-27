@@ -423,86 +423,70 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
 {
     cout << endl;
     int id = 0;
-    cout << "Enter your id    : ";
-    try
+    int book_code = 0;
+    BookNodePtr book = nullptr;
+    PersonNodePtr personPtr = nullptr;
+    PersonNodePtr wanted_person = nullptr;
+    try 
     {
+        cout << "Enter your id    : ";
         cin >> id;
         if (id < 1 || id > 300)
         {
             throw "Given id is invalid";
         }
-
-    }
-    catch (const char* message)
-    {
-        cout << message << endl;
-        return;
-    }
-    int book_code = 0;
-    cout << "Enter the book code to return : ";
-    cin >> book_code;
-
-    BookNodePtr book = nullptr;
-    try
-    {
+        cout << "Enter the book code to return : ";
+        cin >> book_code;
         book = find_book_with_code(library, library_array_size, book_code);
-
-    }
-    catch (int exception)
-    {
-        cout << "Book with id " << exception << " does not exist" << endl;
-        return;
-    }
-
-    PersonNodePtr personPtr = nullptr;
-    if (id >= 1 && id <= 100)
-    {
-        personPtr = person[0];
-    }
-    else
-    {
-        personPtr = person[1];
-    }
-    PersonNodePtr wanted_person = nullptr;
-    try
-    {
+        if (book == NULL)
+        {
+            throw 'N';
+        }
+        if (id >= 1 && id <= 100)
+        {
+            personPtr = person[0];
+        }
+        else
+        {
+            personPtr = person[1];
+        }
         wanted_person = person_exists(personPtr, id);
         if (wanted_person == NULL)
         {
             throw "Person with given id does not exist";
         }
-
+        bool book_rented = wanted_person->getData()->hasRentedBookWithGivenCode(book_code);
+        if (!book_rented)
+        {
+            throw book_code;
+        }
+        cout << endl;
+        cout << endl;
+        char userInput = ' ';
+        cout << "Do you want to return `" << book->getData()->getTitle() << "` (y/n) ?";
+        cin >> userInput;
+        if (userInput == 'Y' || userInput == 'y')
+        {
+            wanted_person->getData()->returnBook(book_code);
+            book->getData()->markReturned();
+            cout << "**** Return Succeed. Check your info!" << endl;
+        }
+    }
+    catch (char exception)
+    {
+        cout << "Book with code " << book_code << " does not exist" << endl;
+        return;
+    }
+    catch (int exception)
+    {
+        cout << "User " << id << "did not rent book with code " << exception << endl;
+        return;
     }
     catch (const char* message)
     {
         cout << message << endl;
         return;
     }
-    try
-    {
-        bool book_rented = wanted_person->getData()->hasRentedBookWithGivenCode(book_code);
-        if (!book_rented)
-        {
-            throw book_code;
-        }
-    }
-    catch (int exception)
-    {
-        cout << "User " << id << "did not rent book with id " << exception  << endl;
-        return;
-    }
-    cout << endl;
-    cout << endl;
-    char userInput = ' ';
-    cout << "Do you want to return `" << book->getData()->getTitle() << "` (y/n) ?";
-    cin >> userInput;
-    if (userInput == 'Y' || userInput == 'y')
-    {
-        wanted_person->getData()->returnBook(book_code);
-        book->getData()->markReturned();
-        cout << "**** Return Succeed. Check your info!" << endl;
-    }
-
 }
 
 BookNodePtr find_book_with_code(BookNodePtr library[3], int array_size, int book_code)
@@ -519,10 +503,6 @@ BookNodePtr find_book_with_code(BookNodePtr library[3], int array_size, int book
     else if(book_code >= 3001 && book_code <= 4000)
     {
         traverse = library[2];
-    }
-    else
-    {
-        throw book_code;
     }
     while (traverse != NULL)
     {
@@ -550,7 +530,7 @@ void show_info(PersonNodePtr person[2], int person_array_size, BookNodePtr libra
         getline(cin, name);
         if (name.empty() || name.find_first_not_of(' ') == name.npos)
         {
-            throw "Given title should not be empty!";
+            throw "Given name should not be empty!";
         }
     }
     catch (const char* message)
