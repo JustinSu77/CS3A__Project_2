@@ -38,14 +38,14 @@ int Student::getCodeAtIndex(int index) const
 
 void Student::displayInfo() const
 {
-	std::cout << getId() << " " << getName()<< " " << getCount();
+	std::cout << getId() << " " << getName() << " " << getCount();
 	if (getCount() == 1)
 	{
-		std::cout << code[0] << " ";
+		std::cout << " " <<  code[0] << " ";
 	}
 	if (getCount() == 2)
 	{
-		std::cout << code[0] << " " <<  code[1] << " ";
+		std::cout <<  " " << code[0] << " " << code[1] << " ";
 	}
 	std::cout << std::endl;
 }

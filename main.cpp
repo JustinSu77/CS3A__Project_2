@@ -89,6 +89,10 @@ int main()
     string book_types[] = { "Children", "Computer", "Novel" };
     int book_types_size = sizeof(book_types) / sizeof(string);
    
+    display_library_array(library, library_array_size);
+    cout << endl;
+    display_person_array(person, person_array_size);
+    exit(0);
    
    char user_input = ' ';
    int user_input_as_int = 0;
@@ -316,7 +320,7 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         cout << endl;
         cout << "Enter your id    : ";
         cin >> id;
-        if (id < 1 || id > 300)
+        if (id < 1 && id > 300)
         {
             throw "Given id is invalid";
         }
@@ -518,76 +522,61 @@ BookNodePtr find_book_with_code(BookNodePtr library[3], int array_size, int book
 void show_info(PersonNodePtr person[2], int person_array_size, BookNodePtr library[3], int library_array_size)
 {
     int id = 0;
-    cout << "Enter your id   : ";
-    cin >> id;
-  
-    cin.ignore();
-    cin.clear();
     string name = "";
-    cout << "Enter your name : ";
+    PersonNodePtr head = NULL;
+    PersonNodePtr wanted_person = NULL;
     try
     {
+        cout << "Enter your id   : ";
+        cin >> id;
+        cin.ignore();
+        cin.clear();
+        string name = "";
+        cout << "Enter your name : ";
         getline(cin, name);
         if (name.empty() || name.find_first_not_of(' ') == name.npos)
         {
             throw "Given name should not be empty!";
         }
+        if (id >= 1 && id <= 100)
+        {
+            head = person[0];
+        }
+        else
+        {
+            head = person[1];
+        }
+        wanted_person = person_exists(head, id);
+        if (wanted_person == NULL)
+        {
+            throw id;
+        }
+        int maxBooksToRent = wanted_person->getData()->getMaxBooksToRent();
+        cout << endl;
+        cout << "You rented " << wanted_person->getData()->getCount() << " books." << endl;
+        for (int i = 0; i < maxBooksToRent; i++)
+        {
+            int book_code = wanted_person->getData()->getCodeAtIndex(i);
+            BookNodePtr book = find_book_with_code(library, library_array_size, book_code);
+            if (book_code != -1)
+            {
+;
+                book->getData()->displayInfo();
+            }
+        }
+    }
+    catch (int exception)
+    {
+        cout << endl;
+        cout << "Person with id of " << exception << " does not exist" << endl;
+        return;
+
     }
     catch (const char* message)
     {
         cout << message << endl;
         return;
     }
-    PersonNodePtr head = nullptr;
-    if (id >= 1 || id <= 100)
-    {
-        head = person[0];
-    }
-    else
-    {
-        head = person[1];
-    }
-    PersonNodePtr wanted_person = nullptr;
-    try
-    {
-        wanted_person = person_exists(head, id);
-        if (wanted_person == NULL)
-        {
-            throw id;
-        }
-    }
-    catch (int exception)
-    {
-        cout << endl;
-        cout << "Person with id of " << exception  << " does not exist" << endl;
-        return;
-    }
-    int maxBooksToRent = wanted_person->getData()->getMaxBooksToRent();
-    for (int i = 0; i < maxBooksToRent; i++)
-    {
-        int book_code = wanted_person->getData()->getCodeAtIndex(i);
-        BookNodePtr book = nullptr;
-        if (book_code != -1)
-        {
-            try
-            {
-                 book = find_book_with_code(library, library_array_size, book_code);
-                 if (book == NULL)
-                 {
-                     throw book_code;
-                 }
-            }
-            catch (int exception)
-            {
-                cout << "Book with id of " << exception << " does not exist" << endl;
-                return;
-            }
-            cout << endl;
-            cout << "You rented " << wanted_person->getData()->getCount() << " books." << endl;
-            book->getData()->displayInfo();
-        }
-    }
-    
 }
 
 void show_all_books(BookNodePtr library[3], int array_size, string book_types[], int book_type_size)
@@ -677,9 +666,10 @@ void display_library_array(BookNodePtr library[3], int array_size)
         
         while (traverse != NULL)
         {
-            traverse->getData()->displaySearchedInfo();
+            traverse->getData()->displayAllInfo();
             traverse = traverse->getLink();
         }
+        cout << endl;
     }
 }
 
@@ -715,7 +705,7 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
         {
             
             inputFile >> name >> books_rented;
-            // Person* teacher = nullptr;
+           
             if (books_rented == 1)
             {
                 inputFile >> first_book_code;
@@ -747,7 +737,7 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 }
              insert_node_by_ascending_id(teacher_head, teacher);
             }
-            else
+            else if(books_rented == 3)
             {
                 inputFile >> first_book_code >> second_book_code >> third_book_code;
                 Person* teacher = nullptr;
@@ -761,6 +751,21 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                     exit(1);
                 }
                 insert_node_by_ascending_id(teacher_head, teacher);
+            }
+            else
+            {
+                Person* teacher = NULL;
+                try
+                {
+                    teacher = new Teacher(id, name, books_rented, -1, -1, -1);
+                }
+                catch (bad_alloc)
+                {
+                    cout << "Failed to allocate memory" << endl;
+                    exit(1);
+                }
+                insert_node_by_ascending_id(teacher_head, teacher);
+
             }
         }
         else if (id >= 101 && id <= 300)
@@ -790,6 +795,20 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 try
                 {
                     student = new Student(id, name, books_rented, first_book_code, second_book_code);
+                }
+                catch (bad_alloc)
+                {
+                    cout << "Failed to allocate memory" << endl;
+                    exit(1);
+                }
+                insert_node_by_ascending_id(student_head, student);
+            }
+            else
+            {
+                Person* student = nullptr;
+                try
+                {
+                    student = new Student(id, name, books_rented, -1, -1);
                 }
                 catch (bad_alloc)
                 {

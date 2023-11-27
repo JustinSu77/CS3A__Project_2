@@ -63,7 +63,7 @@ int Teacher::getIdentification() const
 
 void Teacher::displayRentInfo() const
 {
-	if (getCount() == 0 && getCount() == 2)
+	if (getCount() == 0 || getCount() == 2)
 	{
 		std::cout << "You are " << getName() << ".  " << "You rented " << getCount() << " books." << std::endl;
 	}
