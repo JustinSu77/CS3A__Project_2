@@ -15,7 +15,7 @@ class Book
 	public:
 		/**
 			Purpose: Default constructor.
-			Precondition: Book object is instantiated with no arguments
+			Precondition: Book object is constructed with no arguments
 			Postcondition: - Private member variable code is set to 0
 						   - Private member variable title to empty string
 						   - Private member variable available is set to 0
@@ -25,7 +25,7 @@ class Book
 
 		/**
 			Purpose: Constructor with 4 arguments.
-			Precondition: Book object is instantiated with 4 arguments
+			Precondition: Book object is constructed with 4 arguments
 			Postcondition: - Private member variable code is set to given code
 						   - Private member variable title is set to given title
 						   - Private member variable available is set to given available
@@ -100,7 +100,7 @@ class Book
 
 		/**
 			Purpose: Return book code to allow templated function that 
-					 inserts templated nodes into Linked List by ascending order.
+					 inserts templated nodes into Linked List by ascending order of id.
 			Precondition: Book object is instantiated
 			Postcondition: Private member variable book code is returned
 		**/
@@ -129,7 +129,7 @@ class Book
 						   unique private member variable are neatly formatted to terminal
 		**/
 		 
-		virtual void displayInfo() const = 0;
+		virtual void displayInfoForPerson() const = 0;
 
 		/**
 			Purpose: Used in function to Show All Books

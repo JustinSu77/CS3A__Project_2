@@ -1,3 +1,9 @@
+/**
+	Name: Justin Su
+	Date: 11/28/2023
+	Assignment Title: Project #2
+	Purpose: Book.cpp for Project #2
+**/
 #include "Book.h"
 
 // Sets private member variable to 0

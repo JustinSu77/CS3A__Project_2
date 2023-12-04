@@ -1291,7 +1291,7 @@ void show_person_info(PersonNodePtr person[2], int person_array_size, BookNodePt
             // node with polymorphic Book object that has book code equal to book_code
             BookNodePtr book = search_book_with_code(library, library_array_size, book_code);
             // Call member function to display unique information of polymorphic Book objects
-            book->getData()->displayInfo();
+            book->getData()->displayInfoForPerson();
          }
     }
     // if integer exception is caught

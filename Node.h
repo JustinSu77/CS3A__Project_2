@@ -1,17 +1,26 @@
-#pragma once
+/**
+	Name: Justin Su
+	Date: 11/28/2023
+	Assignment Title: Project #2
+	Purpose: Node.h for Project #2
+**/
+#ifndef NODE_H
+#define NODE_H
+
+// Templated Node class
 	template<typename T>
 	class Node
 	{
-	public:
-		Node();
-		Node(T data, Node* node);
-		void setData(T data);
-		void setLink(Node* nextNode);
-		T getData() const;
-		Node<T>* getLink() const;
-	private:
-		T data;
-		Node* link;
+		public:
+			Node();
+			Node(T data, Node* node);
+			void setData(T data);
+			void setLink(Node* nextNode);
+			T getData() const;
+			Node<T>* getLink() const;
+		private:
+			T data;
+			Node* link;
 	};
 
 	template <typename T>
@@ -50,7 +59,7 @@
 	{
 		return link;
 	}
-
+#endif
  
 
 
