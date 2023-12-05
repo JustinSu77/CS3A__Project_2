@@ -16,6 +16,7 @@
 #include "Person.h"
 #include "Student.h"
 #include "Teacher.h"
+#include "InputException.h"
 using namespace std;
 
 // Define pointer of Node class with templated type of Book*
@@ -88,7 +89,8 @@ void show_menu(char& user_input);
 void search_book(BookNodePtr library[3], int library_size);
 
 /**
-    Purpose: Find node with polymorphic Book object that has the given id and title.
+    Purpose: - Find node with polymorphic Book object that has the given id and title.
+             - Helper function for function search_book
     Input: - head as the head of a Linked List with polymorphic Book objects
            - code as the code of the book to look for
            - title as the title of the book to look for
@@ -775,11 +777,6 @@ void search_book(BookNodePtr library[3], int library_size)
         cout << "Enter title : ";
         // Save user input into title
         getline(cin, title);
-        // If given title is empty or only has spaces then throw const char* message
-        if (title.empty() || title.find_first_not_of(' ') == title.npos)
-        {
-            throw "Given title should not be empty!";
-        }
         // If given code is greater than 1001 and less than or equal to 2000
         if (book_code >= 1001 && book_code <= 2000)
         {
@@ -800,26 +797,33 @@ void search_book(BookNodePtr library[3], int library_size)
         // If code is invalid
         else
         {
-            // Throw const char* exception
-            throw "Given book code is not valid!";
+            // Throw custom exception InputException
+            throw InputException("Given book code is not valid!");
         }
+        // If given title is empty or only has spaces then throw const char* message
+        if (title.empty() || title.find_first_not_of(' ') == title.npos)
+        {
+            // throw custom exception InputException
+            throw InputException("Given title should not be empty!");
+        }
+       
         // Set requested_book pointer to result of function to find book with given code and title
         requested_book = find_book_with_given_code_and_title(book_head, book_code, title);
         // If requested_book is NULL
         if (requested_book == NULL)
         {
             // Throw const char* exception
-            throw "No Match";
+            throw InputException("No Match");
         }
 
     }
     // Catch exception if one is thrown
-    catch (const char* message)
+    catch (const InputException& exception)
     {
         // Output newline for readability
         cout << endl;
         // Output const char* message to terminal
-        cout << message << endl;
+        cout << exception.get_message() << endl;
         // Get out of function
         return;
     }
