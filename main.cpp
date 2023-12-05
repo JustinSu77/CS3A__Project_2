@@ -262,7 +262,8 @@ void display_library_array(BookNodePtr library[3], int library_array_size);
 void display_person_array(PersonNodePtr person[2], int library_array_size);
 
 int main()
-{
+{  
+    
     // Declare ifstream object inputFile
     ifstream inputFile;
     // Declare array of Book*

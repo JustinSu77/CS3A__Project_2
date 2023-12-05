@@ -102,7 +102,8 @@ class ChildrenBook : public Book
 		/**
 			Purpose: Return title with underscores replaced by space.
 			Precondition: ChildrenBook is instantiated
-			Postcondition: Returns the inherited private member variable title with underscore			     replaced by space
+			Postcondition: Returns the inherited private member 
+						   variable title with underscore replaced by space
 		**/
 		virtual std::string get_formatted_title() const;
 	

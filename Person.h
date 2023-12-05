@@ -85,6 +85,16 @@ class Person
 		virtual int getIdentification() const = 0;
 		
 		/**
+		Purpose: Getter function for private member variable code array.
+		Precondition: Polymorphic Person object is instantiated
+		Input: index as the index to return element at
+		Input Requirement: Given index is an integer
+		Postcondition: - If given index is less than 0 or greater
+						 than size of code array, notify and exit program
+					   - Otherwise return the element in code array at given index
+		**/
+		virtual int getCodeAtIndex(int index) const = 0;
+		/**
 			Purpose: Output number of books Person child object has rented for function to Rent a Book.
 			Precondition: Polymorphic Person object is instantiated
 			Postcondition: Outputs values of private member variable name 

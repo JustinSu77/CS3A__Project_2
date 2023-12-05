@@ -30,20 +30,31 @@ class Student : public Person
 		**/
 		Student(int id, std::string name, int count, int first_code, int second_code);
 
-		void setCodeAtIndex(int index, int book_code);
 		/**
-			Purpose: Return the element at given index
+			Purpose: Set element at given index to given book_code.
+			Precondition: Polymorphic Person object is instantiated
+			Input: - index as the index to set given book_code at in private member variable code array
+				   - book_code as the book code of Book rented	
+			Input Requirement: - Given index is an integer
+							   - Given book_code is an integer
+			Postcondition: - If given index is less than 0 or greater
+							 than size of code array, notify and exit program
+						   - Otherwise set the element in code array at given index to given book_code 
+		**/
+		void setCodeAtIndex(int index, int book_code);
+		
+		/**
+			Purpose: Getter function for private member variable code array.
 			Precondition: Polymorphic Person object is instantiated
 			Input: index as the index to return element at
 			Input Requirement: Given index is an integer
 			Postcondition: - If given index is less than 0 or greater
-						 than size of code array, notify and exit program
-					   - Otherwise return the element in code array at given index
+							 than size of code array, notify and exit program
+						   - Otherwise return the element in code array at given index
 		**/
 		int getCodeAtIndex(int index) const;
 		
-		// Pure virtual functions to be implemented in child classes as 
-		// the behaviors are different depending on which Child class calls it
+		// Implementation of the pure virtual function in Parent class
 
 		virtual void displayInfo() const;
 
@@ -54,6 +65,8 @@ class Student : public Person
 			Postcondition: Value of id is returned
 		**/
 		virtual int getIdentification() const;
+
+
 
 		/**
 			Purpose: Output number of books Person child object has rented for function to Rent a Book.

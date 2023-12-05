@@ -171,5 +171,4 @@ void Student::returnBook(int book_code)
 		// Decrement value of private member variable count by 1
 		setCount(getCount() - 1);
 	}
-	
 }
