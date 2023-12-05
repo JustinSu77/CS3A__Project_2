@@ -1,24 +1,135 @@
+/**
+	Name: Justin Su
+	Date: 11/28/2023
+	Assignment Title: Project #2
+	Purpose: Person.h for Project #2
+**/
 #pragma once
 #include <iostream>
+
+// Person Class
 class Person
 {
+	// Public member functions
 	public:
+		/**
+			Purpose: Default constructor.
+			Preconditon: Person object is constructed with no arguments
+			Postcondition: - Private member variable id is set to 0
+						   - Private member variable name is set to empty string
+						   - Private member variable count is set to 0
+		**/
 		Person();
+
+		/**
+			Purpose: Constructor with 3 arguments.
+			Precondition: Person object is constructed with 3 arguments
+			Postcondition: - Private member variable id is set to given id
+						   - Private member variable name is set to given name
+						   - Private member variable count is set to 0
+		**/
 		Person(int id, std::string name, int count);
+
+		/**
+			Purpose: Setter function for private member variable id.
+			Precondition: Person object is instantiated
+			Postcondition: Private member variable id is set to given id
+		**/
 		void setId(int id);
+
+		/**
+			Purpose: Setter function for private member variable name.
+			Precondition: Person object is instantiated
+			Postcondition: Private member variable name is set to given name
+		**/
 		void setName(std::string name);
+
+		/**
+			Purpose: Setter function for private member variable count.
+			Precondition: Person object is instantiated
+			Postcondition: Private member variable count is set to given count
+		**/
 		void setCount(int count);
+
+		/**
+			Purpose: Getter function for private member variable id.
+			Precondition: Person object is instantiated
+			Postcondition: Value of private member variable id is returned
+		**/
 		int getId() const;
+
+		/**
+			Purpose: Getter function for private member variable name.
+			Precondition: Person object is instantiated
+			Postcondition: Value of private member variable string is returned
+		**/
 		std::string getName() const;
+
+		/**
+			Purpose: Getter function for private member variable count.
+			Precondition: Person object is instantiated
+			Postcondition: Value of private member variable count is returned
+		**/
 		int getCount() const;
+		// Pure virtual functions to be implemented in child classes as 
+		// the behaviors are different depending on which Child class calls it
+		
 		virtual void displayInfo() const = 0;
+
+		/**
+			Purpose: Return value of id for templated function that 
+			         inserts Person child object into Linked List.
+			Precondition: Polymorphic Person object is instantiated
+			Postcondition: Value of id is returned
+		**/
 		virtual int getIdentification() const = 0;
+		
+		/**
+			Purpose: Output number of books Person child object has rented for function to Rent a Book.
+			Precondition: Polymorphic Person object is instantiated
+			Postcondition: Outputs values of private member variable name 
+						   and count of Person object rented to terminal 
+		**/
 		virtual void displayRentInfo() const = 0;
+
+		/**
+			Purpose: Return the maximum number of books Person child object can have.
+			Precondition: Polymorphic Person object is instantiated
+			Postcondition: Size of the private member variables code array of Child classes is returned
+		**/
 		virtual int getMaxBooksToRent() const = 0;
+
+		/**
+			Purpose: Check if private member variable code array has given book_code value.
+			Precondition: Polymorphic Person object is instantiated
+			Input: book_code as the book code to check
+			Input Requirement: Given book_code should be an integer
+			Postcondition: Returns true if Child has given book_code in their code array
+						   Otherwise return false
+		**/
 		virtual bool hasRentedBookWithGivenCode(int book_code) const = 0;
+
+		/**
+			Purpose: Add given book_code to code array and increment count by 1.
+			Precondition: Polymorphic Person object is instantiated
+			Input: book_code as the book code to add to code array
+			Input Requirement: Given book_code should be an integer
+			Postcondition: Add given book_code to element with value of -1
+						   If book_code is added successfully, increment count by 1
+		**/
 		virtual void rentBook(int book_code) = 0;
+
+		/**
+			Purpose: Set given book_code in code_array and decrement count by 1.
+			Precondition: Polymorphic Person object is instantiated
+			Input: book_code as the book code to set to -1 in code array
+			Input Requirement: Given book_code should be an integer
+			Postcondition: Set given book_code to element with value of -1
+						   If book_code is removed successfully, decrement count by 1
+		**/
 		virtual void returnBook(int book_code) = 0;
-		virtual int getCodeAtIndex(int index)const = 0;
+
+	// Public member variables
 	private:
 		int id;
 		std::string name;

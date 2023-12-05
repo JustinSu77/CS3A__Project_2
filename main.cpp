@@ -946,7 +946,7 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         wanted_person->getData()->displayRentInfo();
         // Prompt user if they want to rent book with given title
         cout << "Do want to rent '" << title << "' (y/n)? ";
-        // Store user input into variable iser_input
+        // Store user input into variable user_input
         cin >> user_input;
         // if user_input is Y or y
         if (user_input == 'Y' || user_input == 'y')
