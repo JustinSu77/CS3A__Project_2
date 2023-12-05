@@ -8,6 +8,7 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
+#include <cctype>
 #include "Node.h"
 #include "Book.h"
 #include "ChildrenBook.h"
@@ -64,11 +65,20 @@ void insert_node_by_ascending_id(T& head, S object);
 /**
     Purpose: Show and prompt user a numbered selection of tasks to run for this program.
     Input: user_input as the variable to store the option the user chooses
-    Input Requirement: Given user_input is of type char
+    Input Requirement: Given user_input is of type string
     Result: - Display a list of tasks to be run for this program
             - Given user_input has char value of whatever user entered
 **/
-void show_menu(char& user_input);
+void show_menu(string& user_input);
+
+/**
+    Purpose: Check if all the characters in given string are digits.
+    Input: input as string to check
+    Input Requirement: Given input should be a string
+    Result: Return true if all characters in given input string are digits
+            Return false otherwise
+**/
+bool given_string_is_integer(string input);
 
 // Task 1: Search a book 
 /**
@@ -318,27 +328,43 @@ int main()
     //display_person_array(person, person_array_size);
     
    // Declare and initialize variable to store user input for their choice of task to run
-   char user_input = ' ';
+   string user_input = "";
    // Declare and initialize variable to store the given user_input as int
-   int user_input_as_int = 0;
+   int user_input_as_integer = 0;
    do
    {
-       // Show menu to user and store their choice into user_input variable
-        show_menu(user_input);
         // Change the user_input into an integer value
-        user_input_as_int = static_cast<int>(user_input) - static_cast<int>('0');
-       
-        if (user_input_as_int < 1 || user_input_as_int > 6)
+        // Show menu to user and store their choice into user_input variable
+        show_menu(user_input);
+        // If given user_input does consists of digits
+        if (given_string_is_integer(user_input))
+        {
+            user_input_as_integer = stoi(user_input);
+            
+        }
+        else
         {
             // Skip a line in terminal for readability
             cout << endl;
             // Notify
-            cout << "Invalid option! Exiting program!" << endl;
-            // Exit program with error code 1
-            exit(1);
+            cout << "Invalid input!" << endl;
+            cout << endl;
+            // Go to next iteration of do while loop
+            continue;
+        }
+
+        if (user_input_as_integer < 1 || user_input_as_integer > 6)
+        {
+            // Skip a line in terminal for readability
+            cout << endl;
+            // Notify
+            cout << "Invalid option!" << endl;
+            cout << endl;
+            // Go to next iteration of do while loop
+            continue;
         }
         // Run task based on vlaue of user_input_as_int
-        switch (user_input_as_int)
+        switch (user_input_as_integer)
         {
             // If user_input_as_int is 1
             case 1:
@@ -383,7 +409,7 @@ int main()
                 cout << "Exiting...." << endl;
         }
     // Keep looping while user_input_as_int is not 6
-   } while (user_input_as_int != 6);
+   } while (user_input_as_integer != 6);
     
    // Deallocate dynamic variables in library array
    deallocate_array(library, library_array_size);
@@ -393,7 +419,7 @@ int main()
    return 0;
 }
 
-void show_menu(char& user_input)
+void show_menu(string &user_input)
 {
     // Show user menu with 6 options
     cout << "-----------------------" << endl;
@@ -410,7 +436,23 @@ void show_menu(char& user_input)
     // Prompt to select one of six options
     cout << "Select (1-6) : ";
     // Store user input into given user_input variables
-    cin >> user_input;
+    getline(cin, user_input);
+}
+
+bool given_string_is_integer(string input)
+{
+    // Loop through characters in given input string
+    for (int i = 0; i < input.size(); i++)
+    {
+        // If the current character is not a digit
+        if (isdigit(input[i]) == 0)
+        {
+            // Return false
+            return false;
+        }
+    }
+    // Otherwise return true
+    return true;
 }
 
 void fill_library_array(BookNodePtr library[3], ifstream& inputFile)
