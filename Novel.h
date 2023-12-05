@@ -51,7 +51,7 @@ class Novel : public Book
 			Postcondition: Output the category and the private member
 						   variables publish_date, available, and rented
 		**/
-		virtual void displaySearchedInfo() const;
+		void displaySearchedInfo() const;
 
 		/**
 			Purpose: Return the value of private member variable code of Novel object
@@ -60,7 +60,7 @@ class Novel : public Book
 			Precondition: Novel is instantiated
 			Postcondition: Return the value of inherited private member variable code
 		**/
-		virtual int getIdentification() const;
+		int getIdentification() const;
 
 		/**
 			Purpose: Denotes a Novel object as being rented for
@@ -69,7 +69,7 @@ class Novel : public Book
 			Postcondition: - The value of private member variable rented is increased by 1
 						   - The value of private member variable available is decreased by 1
 		**/
-		virtual void markRented();
+		void markRented();
 
 		/**
 			Purpose: Denotes a Novel object as being returned for function
@@ -78,7 +78,7 @@ class Novel : public Book
 			Postcondition: - The value of private member variable rented is decreased by 1
 						   - The value of private member variable available is increased by 1
 		**/
-		virtual void markReturned();
+		void markReturned();
 
 		/**
 			Purpose: Output information of Novel object for function
@@ -88,7 +88,7 @@ class Novel : public Book
 						   variable title, code, and publish_date neatly
 						   formatted to terminal
 		**/
-		virtual void displayInfoForPerson() const;
+		void displayInfoForPerson() const;
 
 		/**
 			Purpose: Output all information of Novel object
@@ -98,7 +98,7 @@ class Novel : public Book
 						   title with underscores removed, publish_date, available,
 						   and rented neatly formatted to terminal
 		**/
-		virtual void displayAllInfo() const;
+		void displayAllInfo() const;
 
 		/**
 			Purpose: Return title with underscores replaced by space.
@@ -106,7 +106,7 @@ class Novel : public Book
 			Postcondition: Returns the inherited private member variable title
 						   with underscore replaced by space
 		**/
-		virtual std::string get_formatted_title() const;
+		std::string get_formatted_title() const;
 		
 	// Private member variables
 	private:

@@ -53,7 +53,7 @@ class ChildrenBook : public Book
 			Postcondition: Output the category and the private member 
 						   variables age, available, and rented 
 		**/
-		virtual void displaySearchedInfo() const;
+		void displaySearchedInfo() const;
 		
 		/**
 			Purpose: Return the value of private member variable code of ChildrenBook object 
@@ -62,7 +62,7 @@ class ChildrenBook : public Book
 			Precondition: ChildrenBook is instantiated
 			Postcondition: Return the value of inherited private member variable code
 		**/
-		virtual int getIdentification() const;
+		int getIdentification() const;
 
 		/**
 			Purpose: Denotes a ChildrenBook object as being rented for 
@@ -71,15 +71,16 @@ class ChildrenBook : public Book
 			Postcondition: - The value of private member variable rented is increased by 1
 						   - The value of private member variable available is decreased by 1
 		**/
-		virtual void markRented();
+		 void markRented();
 
 		/**
-			Purpose: Denotes a ChildrenBook object as being returned for function for Rent a Book	   and Return a Book.
+			Purpose: Denotes a ChildrenBook object as being returned for 
+					 function for Rent a Book and Return a Book.
 			Precondition: ChildrenBook is instantiated
 			Postcondition: - The value of private member variable rented is decreased by 1
 						   - The value of private member variable available is increased by 1
 		**/
-		virtual void markReturned();
+		void markReturned();
 
 		/**
 			Purpose: Output information of ChildrenBook object for function 
@@ -88,7 +89,7 @@ class ChildrenBook : public Book
 			Postcondition: Outputs the values of private member 
 						   variable title, code, and age neatly formated to terminal
 		**/
-		virtual void displayInfoForPerson() const;
+		void displayInfoForPerson() const;
 
 		/**
 			Purpose: Output all information of ChildrenBook object 
@@ -97,7 +98,7 @@ class ChildrenBook : public Book
 			Postcondition: Outputs the values of private member variables code, 
 						   title with underscores removed, age, available, and rented
 		**/
-		virtual void displayAllInfo() const;
+		void displayAllInfo() const;
 
 		/**
 			Purpose: Return title with underscores replaced by space.
@@ -105,7 +106,7 @@ class ChildrenBook : public Book
 			Postcondition: Returns the inherited private member 
 						   variable title with underscore replaced by space
 		**/
-		virtual std::string get_formatted_title() const;
+		std::string get_formatted_title() const;
 	
 	// Private member variables
 	private:

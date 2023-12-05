@@ -53,7 +53,7 @@ class Teacher : public Person
 		
 		 
 		// Implementation of the pure virtual function in Parent class
-		virtual void displayInfo() const;
+		 void displayInfo() const;
 
 		/**
 			Purpose: Return value of id for templated function that
@@ -61,7 +61,7 @@ class Teacher : public Person
 			Precondition: Polymorphic Person object is instantiated
 			Postcondition: Value of id is returned
 		**/
-		virtual int getIdentification() const;
+		int getIdentification() const;
 
 		/**
 			Purpose: Output number of books Person child object has rented for function to Rent a Book.
@@ -69,14 +69,14 @@ class Teacher : public Person
 			Postcondition: Outputs values of private member variable name
 						   and count of Person object rented to terminal
 		**/
-		virtual void displayRentInfo() const;
+		void displayRentInfo() const;
 
 		/**
 			Purpose: Return the maximum number of books Person child object can have.
 			Precondition: Polymorphic Person object is instantiated
 			Postcondition: Size of the private member variables code array of Child classes is returned
 		**/
-		virtual int getMaxBooksToRent() const;
+		int getMaxBooksToRent() const;
 
 		/**
 			Purpose: Check if private member variable code array has given book_code value.
@@ -86,7 +86,7 @@ class Teacher : public Person
 			Postcondition: Returns true if Child has given book_code in their code array
 						   Otherwise return false
 		**/
-		virtual bool hasRentedBookWithGivenCode(int book_code) const;
+		bool hasRentedBookWithGivenCode(int book_code) const;
 
 		/**
 			Purpose: Add given book_code to code array and increment count by 1.
@@ -96,7 +96,7 @@ class Teacher : public Person
 			Postcondition: Add given book_code to element with value of -1
 						   If book_code is added successfully, increment count by 1
 		**/
-		virtual void rentBook(int book_code);
+		void rentBook(int book_code);
 
 		/**
 			Purpose: Set given book_code in code_array and decrement count by 1.
@@ -106,7 +106,7 @@ class Teacher : public Person
 			Postcondition: Set given book_code to element with value of -1
 						   If book_code is removed successfully, decrement count by 1
 		**/
-		virtual void returnBook(int book_code);
+		void returnBook(int book_code);
 	 
 	private:
 		int code[3];
