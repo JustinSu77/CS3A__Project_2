@@ -1,21 +1,21 @@
-#include "InputException.h"
+#include "CustomException.h"
 
 // Set value of private member variable to "Error"
-InputException::InputException() : 
+CustomException::CustomException() : 
 	message("Error")
 {
 
 }
 
 // Set value of private member variable to given message
-InputException::InputException(std::string message) 
+CustomException::CustomException(std::string message) 
 	: message(message)
 {
 
 }
 
 
-std::string InputException::get_message() const
+std::string CustomException::get_message() const
 {
 	// Return the value of private member variable message
 	return message;

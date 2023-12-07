@@ -17,7 +17,7 @@
 #include "Person.h"
 #include "Student.h"
 #include "Teacher.h"
-#include "InputException.h"
+#include "CustomException.h"
 using namespace std;
 
 // Define pointer of Node class with templated type of Book*
@@ -333,10 +333,14 @@ int main()
    int user_input_as_integer = 0;
    do
    {
+     
+      
         // Change the user_input into an integer value
         // Show menu to user and store their choice into user_input variable
         show_menu(user_input);
         // If given user_input does consists of digits
+      
+       
         if (given_string_is_integer(user_input))
         {
             user_input_as_integer = stoi(user_input);
@@ -370,6 +374,7 @@ int main()
             case 1:
                 // Call search_book function
                 search_book(library, library_array_size);
+             
                 // Output newline to terminal for readability
                 cout << endl;
                 // Prevent fall through
@@ -377,6 +382,8 @@ int main()
             case 2:
                 // Call rent_book function
                 rent_book(library, library_array_size, person, person_array_size);
+                cin.clear();
+                cin.ignore();
                 // Output newline to terminal for readability
                 cout << endl;
                 // Prevent fall through
@@ -384,6 +391,8 @@ int main()
             case 3:
                 // Call return_book function
                 return_book(library, library_array_size, person, person_array_size);
+                cin.clear();
+                cin.ignore();
                 // Output newline to terminal for readability
                 cout << endl;
                 // Prevent fall through
@@ -391,6 +400,8 @@ int main()
             case 4:
                 // Call show_info function
                 show_person_info(person, person_array_size, library, library_array_size);
+                // Ignore any existi data in cin
+              
                 // Outout newline to terminal for readability
                 cout << endl;
                 // Prevent fall through
@@ -398,6 +409,8 @@ int main()
             case 5:
                 // Call show_all_books function
                 show_all_books(library, library_array_size, book_types, book_types_size);
+                // Ignore any existi data in cin
+             
                 // Output newline to terminal for readability
                 cout << endl;
                 // Prevent fall through
@@ -408,6 +421,8 @@ int main()
                 // Notify program is about to exit
                 cout << "Exiting...." << endl;
         }
+
+
     // Keep looping while user_input_as_int is not 6
    } while (user_input_as_integer != 6);
     
@@ -437,6 +452,7 @@ void show_menu(string &user_input)
     cout << "Select (1-6) : ";
     // Store user input into given user_input variables
     getline(cin, user_input);
+ 
 }
 
 bool given_string_is_integer(string input)
@@ -840,13 +856,13 @@ void search_book(BookNodePtr library[3], int library_size)
         else
         {
             // Throw custom exception InputException
-            throw InputException("Given book code is not valid!");
+            throw CustomException("Given book code is not valid!");
         }
         // If given title is empty or only has spaces then throw const char* message
         if (title.empty() || title.find_first_not_of(' ') == title.npos)
         {
             // throw custom exception InputException
-            throw InputException("Given title should not be empty!");
+            throw CustomException("Given title should not be empty!");
         }
        
         // Set requested_book pointer to result of function to find book with given code and title
@@ -855,12 +871,12 @@ void search_book(BookNodePtr library[3], int library_size)
         if (requested_book == NULL)
         {
             // Throw const char* exception
-            throw InputException("No Match");
+            throw CustomException("No Match");
         }
 
     }
     // Catch exception if one is thrown
-    catch (const InputException& exception)
+    catch (const CustomException& exception)
     {
         // Output newline for readability
         cout << endl;
@@ -927,14 +943,15 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         // If given id is invalid
         if (id < 1 && id > 300)
         {
-            // throw const char* exception
-            throw "Given id is invalid";
+            // throw custom exception
+            throw CustomException("Given id is invalid");
         }
         
-        // Ignore last input in cin to allow getline to work
-        cin.ignore();
+       
         // Clear the cin stream to allow geline to work
         cin.clear();
+        // Ignore last input in cin to allow getline to work
+        cin.ignore();
         // Prompt user for book title
         cout << "Enter book title : ";
         // Store user input in title
@@ -942,8 +959,8 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         // If title is empty or only has spaces
         if (title.empty() || title.find_first_not_of(' ') == title.npos)
         {
-            // throw const char* exception
-            throw "Given title should not be empty!";
+            // throw custom exception
+            throw CustomException("Given title should not be empty!");
         }
         // If given id is greater than or equal to 1 and less than or equal to 100
         if (id >= 1 && id <= 100)
@@ -961,7 +978,7 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         else
         {
             // Throw const char* exception
-            throw "Given id is invalid";
+            throw CustomException("Given id is invalid");
         }
         // Set wanted_person to result of function 
         // to find person with given id
@@ -969,16 +986,16 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         // If wanted_person is still NULL
         if (wanted_person == NULL)
         {
-            // throw const char* exception
-            throw "Person with given id does not exist";
+            // throw exception
+            throw CustomException("Person with given id does not exist");
         }
         // Set book to result of function to search book by given title
         book = search_book_with_title(library, library_array_size, title);
         // If book is still NULL
         if (book == NULL)
         {
-            // throw  title as string exception
-            throw title;
+            // throw custom exception
+            throw CustomException("Book with title of " + title + " does not exist");
         }
         // Set rented to the number of books rented in searched person object
         rented = wanted_person->getData()->getCount();
@@ -987,6 +1004,12 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         {
             // throw rented as integer exception
             throw rented;
+        }
+        int book_code = book->getData()->getCode();
+        string name = wanted_person->getData()->getName();
+        if (wanted_person->getData()->hasRentedBookWithGivenCode(book_code))
+        {
+            throw CustomException(name + " already rented book with title " + title);
         }
         // Call function of the data of wanted_person 
         // node to display information of books they rented
@@ -998,64 +1021,50 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         // if user_input is Y or y
         if (user_input == 'Y' || user_input == 'y')
         {
-            // Declare and initialize variable to store 
-            // available books to be rented
-            int available = 0;
-            try
-            {
-                // Set variable to the value of the available private member 
-                // varible of the searched book node
-                available = book->getData()->getAvailable();
-                // if available is 0
-                if (available == 0)
-                {
-                    // throw string exception
-                    throw book->getData()->getTitle();
-                }
-            }
-            // Catch the string exception thrown
-            catch (string message)
-            {
-                // Notify 
-                cout << "All copies of " << message << " have been rented out." << endl;
-                // Get out of function
-                return;
-            }
-            // Declare and initialize book_code as the 
-            // book code of data of searched book node
-            int book_code = book->getData()->getCode();
-            // Call rentBook function of the data of wanted_person node
-            wanted_person->getData()->rentBook(book_code);
-            // Call markRented function of the data of book node
-            book->getData()->markRented();
-            // Notify user that rent succeeded
-            cout << "**** Rent succeed. Check your info!" << endl;
+           
+          // Set variable to the value of the available private member 
+          // varible of the searched book node
+          int available = book->getData()->getAvailable();
+          // if available is 0
+          if (available == 0)
+          {
+             // throw custom exception
+             throw CustomException("All copies of " + book->getData()->getTitle() + " have been rented out.");
+          }
+          // Declare and initialize book_code as the 
+          // book code of data of searched book node
+          int book_code = book->getData()->getCode();
+          // Call rentBook function of the data of wanted_person node
+          wanted_person->getData()->rentBook(book_code);
+          // Call markRented function of the data of book node
+          book->getData()->markRented();
+          // Notify user that rent succeeded
+         cout << "**** Rent succeed. Check your info!" << endl;
+          
         }
     }
-    // Catch string exception thrown
-    catch (string exception)
+    // Catch custom  exception thrown
+    catch (const CustomException& e)
     {
+        // Output newline to terminal for readability
+        cout << endl;
         // Notify
-        cout << exception << " does not exist" << endl;
+        cout << e.get_message() << endl;
         // Get out of function
         return;
     }
-    // Catch const char* exception thrown
-    catch (const char* message)
-    {
-        // Notify
-        cout << message << endl;
-        // Get out of function
-        return;
-    }
+    
     // Catch integer exception thrown
     catch (int exception)
     {
-        // Notify
-        cout << "You have reached your maximum books to be rented of  " << exception << endl;
+        // Output newline to terminal for readability
+        cout << endl;
+        cout << "Hello " << wanted_person->getData()->getName() 
+            << ", you have already rented " << exception << " books" << endl;
         // Get out of function
         return;
     }
+ 
 }
 
 PersonNodePtr search_person_with_given_id(PersonNodePtr head, int id)
@@ -1129,7 +1138,7 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         if (id < 1 || id > 300)
         {
             // throw const char* exception
-            throw "Given id is invalid";
+            throw CustomException("Given id is invalid");
         }
         // Prompt user for book code
         cout << "Enter the book code to return : ";
@@ -1142,7 +1151,7 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         if (book == NULL)
         {
            // throw string exception
-         throw string("Book with code " + to_string(book_code) + " does not exist");
+         throw CustomException("Book with code " + to_string(book_code) + " does not exist");
         }
         // If given id is greater than 1 and less than equal to 100
         if (id >= 1 && id <= 100)
@@ -1162,7 +1171,7 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         if (wanted_person == NULL)
         {
             // throw const char* exception
-            throw "Person with given id does not exist";
+            throw CustomException("Person with given id does not exist");
         }
         // Declare and initialize variable to store 
         // if a person has rented a book with given book_code
@@ -1171,7 +1180,8 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         if (!book_rented)
         {
             // throw integer exception
-            throw book_code;
+            throw CustomException("User with id of " + to_string(id) + 
+                                 " did not rent book with book code of " + to_string(book_code));
         }
         // Output newline to terminal for readability
         cout << endl;
@@ -1195,24 +1205,11 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         }
     }
     // Catch integer exception
-    catch (int exception)
+    catch (const CustomException& e)
     {
         // Notify
-        cout << "User " << id << "did not rent book with code " << exception << endl;
-        // Get out of this function
-        return;
-    }
-    catch (string message)
-    {
-        // Notify
-        cout << message << endl;
-        // Get out of this function
-        return;
-    }
-    catch (const char* message)
-    {
-        // Notify
-        cout << message << endl;
+        cout << e.get_message() << endl;
+        //cout << "User " << id << "did not rent book with code " << exception << endl;
         // Get out of this function
         return;
     }
@@ -1393,11 +1390,11 @@ void show_all_books(BookNodePtr library[3], int library_array_size, string book_
         else if (activity == "Novel")
         {
             // Output the header for information of Novel books
-            cout << "=================================================================" << endl;
+            cout << "==================================================================" << endl;
             cout << "                       Novel Books                             " << endl;
-            cout << "=================================================================" << endl;
+            cout << "==================================================================" << endl;
             cout << " code                 title       publish date    available rented" << endl;
-            cout << "-----------------------------------------------------------------" << endl;
+            cout << "------------------------------------------------------------------" << endl;
         }
         // Declare and initialize BookNodePtr to point to head of 
         // Linked List of polymorphic Book objects in current element of library array
