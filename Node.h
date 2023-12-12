@@ -8,7 +8,7 @@
 #define NODE_H
 
 // Templated Node class
-	template<typename T>
+	template<class T>
 	class Node
 	{
 		// Public member functions
@@ -65,7 +65,7 @@
 			Node* link;
 	};
 
-	template <typename T>
+	template <class T>
 	Node<T>::Node()
 	{
 		// Set private member variable to value of default constructor of data type T
@@ -76,34 +76,34 @@
 
 	// Set value of private member variable data to given data
 	// Set value of private member variable nextNode to given nextNode 
-	template <typename T>
+	template <class T>
 	Node<T>::Node(T data, Node<T>* nextNode) : data(data), link(nextNode)
 	{
 
 	}
 
-	template<typename T>
+	template<class T>
 	void Node<T>::setData(T data)
 	{
 		// Set value of private member variable data to given data
 		this->data = data;
 	}
 
-	template<typename T>
+	template<class T>
 	void Node<T>::setLink(Node<T>* nextNode)
 	{
 		// Set value of private member variable link to given nextNode
 		this->link = nextNode;
 	}
 
-	template<typename T>
+	template<class T>
 	T Node<T>::getData() const
 	{
 		// Return the value of private member variable data
 		return data;
 	}
 
-	template<typename T>
+	template<class T>
 	Node<T>* Node<T>::getLink() const
 	{
 		// Return the value of private member variable link

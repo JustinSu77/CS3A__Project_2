@@ -37,11 +37,11 @@ int ChildrenBook::getAge() const
 void ChildrenBook::displaySearchedInfo() const
 {
 	// Output category to terminal
-	std::cout << "category : " << "children" << std::endl;
+	std::cout << " category : " << "children" << std::endl;
 	// Output value of private member variable age to terminal
-	std::cout << "age : " << getAge() << std::endl;
+	std::cout << " age : " << getAge() << std::endl;
 	// Output value of private member variables available and rented to terminal
-	std::cout << getAvailable() << " available, " << getRented() << " rented" << std::endl;
+	std::cout << " " << getAvailable() << " available, " << getRented() << " rented" << std::endl;
 }
 
 int ChildrenBook::getIdentification() const

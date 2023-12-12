@@ -36,11 +36,11 @@ std::string ComputerBook::getPublisher() const
 void ComputerBook::displaySearchedInfo() const
 {
 	// Output category
-	std::cout << "category : " << "computer" << std::endl;
+	std::cout << " category : " << "computer" << std::endl;
 	// Output value of private member variable publisher
-	std::cout << "publisher : " << getPublisher() << std::endl;
+	std::cout << " publisher : " << getPublisher() << std::endl;
 	// Output the value of private member variables available and rented
-	std::cout << getAvailable() << " available, " << getRented() << " rented" << std::endl;
+	std::cout << " " << getAvailable() << " available, " << getRented() << " rented" << std::endl;
 }
 
 int ComputerBook::getIdentification() const

@@ -1,21 +1,21 @@
-#include "CustomException.h"
+#include "ProgramException.h"
 
 // Set value of private member variable to "Error"
-CustomException::CustomException() : 
+ProgramException::ProgramException() : 
 	message("Error")
 {
 
 }
 
 // Set value of private member variable to given message
-CustomException::CustomException(std::string message) 
+ProgramException::ProgramException(std::string message) 
 	: message(message)
 {
 
 }
 
 
-std::string CustomException::get_message() const
+std::string ProgramException::get_message() const
 {
 	// Return the value of private member variable message
 	return message;

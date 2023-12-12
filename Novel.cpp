@@ -38,11 +38,11 @@ int Novel::get_publish_date() const
 void Novel::displaySearchedInfo() const
 {
 	// Output the category of Novel to terminal
-	std::cout << "category : " << "novel" << std::endl;
+	std::cout << " category : " << "novel" << std::endl;
 	// Outout the value of private member variable publish_date to terminal
-	std::cout << "publish date : " << get_publish_date() << std::endl;
+	std::cout << " publish date : " << get_publish_date() << std::endl;
 	// Output values of inherited private member variables available and rented to terminal 
-	std::cout << getAvailable() << " available, " << getRented() << " rented" << std::endl;
+	std::cout << " " << getAvailable() << " available, " << getRented() << " rented" << std::endl;
 }
 
 int Novel::getIdentification() const

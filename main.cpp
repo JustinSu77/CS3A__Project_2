@@ -17,7 +17,7 @@
 #include "Person.h"
 #include "Student.h"
 #include "Teacher.h"
-#include "CustomException.h"
+#include "ProgramException.h"
 using namespace std;
 
 // Define pointer of Node class with templated type of Book*
@@ -86,15 +86,18 @@ bool given_string_is_integer(string input);
     Input: - library as an array of heads of Linked List of polymorphic Book objects
            - library_size as number of elements in given library
     Input Requirement: - Given library is of type BookNodePtr
-                       - Given library_size is equal to number of elements in given library
+                       - Given library_size is equal to number of elements 
+                         in given library
                        - Given library_size is an integer
     Result: - Prompt user for book code
             - Prompt user for book title
-            - If given book code is not valid throw const char* exception
-            - If given title is empty or just spaces, throw const char* exception
-            - If book to search for does not exist, throw "No Match"
-            - Output title of book and book code to terminal
-            - Output category, publisher, availability, and rented to terminal
+            - If given book code is invalid, throw ProgramException
+              with string message
+            - If given book title is empty or only has spaces, 
+              throw ProgramException with string message
+            - If book is not found, throw ProgramException with string message "No Match
+            - Output title of book, book code ,category, 
+              publisher, availability, and rented to terminal
 **/
 void search_book(BookNodePtr library[3], int library_size);
 
@@ -128,16 +131,17 @@ BookNodePtr find_book_with_given_code_and_title(BookNodePtr head, int code, stri
                        - Given person array should be of type PersonNodePtr
                        - Given person_array_size should be equal to number of elements 
                          in given person array
-    Result: - Prompt user for id
+    Result: 
+            - Prompt user for id
+            - If given id is out of bounds, throw ProgramException with string message
             - Prompt user for book title
-            - If id is invalid, throw const char* exception
-            - If title is empty or just spaces throw const char* exception
-            - If person to find does not exist, throw cons char* exception
-            - If book to find does not exist, throw string
-            - If book is not available, throw const char* message
-            - Prompt user if they want to rent book with given title
-            - If person already rented max number of books, throw integer
-            - Output confirmation of successful renting of a book
+            - If given title is empty or only has spaces, throw ProgramException with string message
+            - If person with given id is not found, throw ProgramException with string message
+            - If book with given book code is not found, throw ProgramException with string message
+            - If count value of person value is equal to their max available book to rent, throw ProgramException with string message
+            - If person already rented book with given book code, throw ProgramException with string message
+            - If searched book available is 0, throw ProgramException with string message
+            - Output confirmation of successful renting of a searched book to terminal
 **/
 void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr person[2], int person_array_size);
 
@@ -248,7 +252,9 @@ void show_person_info(PersonNodePtr person[2], int person_array_size, BookNodePt
                        - Given book_types array is of type string
                        - Given book_types_size is equal to number of elements in given book_types
                        - Given book_types_size is an integer
-    Result: Output the book code, title, unique book 
+    Result: 
+            
+            Otherwise output the book code, title, unique book 
             information, available, and rented to terminal
 **/
 // Task 5: Show all books
@@ -267,11 +273,6 @@ void show_all_books(BookNodePtr library[3], int library_array_size, string book_
 **/
 template <class T>
 void deallocate_array(T* array, int array_size);
-
-
-// Debugging
-void display_library_array(BookNodePtr library[3], int library_array_size);
-void display_person_array(PersonNodePtr person[2], int library_array_size);
 
 int main()
 {  
@@ -323,29 +324,24 @@ int main()
     // Declare and initialize variable to store number of elements in book_types array
     int book_types_size = sizeof(book_types) / sizeof(string);
    
-    //display_library_array(library, library_array_size);
-    //cout << endl;
-    //display_person_array(person, person_array_size);
-    
+ 
    // Declare and initialize variable to store user input for their choice of task to run
    string user_input = "";
    // Declare and initialize variable to store the given user_input as int
    int user_input_as_integer = 0;
    do
    {
-     
-      
         // Change the user_input into an integer value
         // Show menu to user and store their choice into user_input variable
         show_menu(user_input);
-        // If given user_input does consists of digits
-      
-       
+        // Error handling to ensure user enters a string with only digits
+        // If given user_input does consists of all digits
         if (given_string_is_integer(user_input))
         {
+            // Turn it into an integer
             user_input_as_integer = stoi(user_input);
-            
         }
+        // If string does not contain all digits
         else
         {
             // Skip a line in terminal for readability
@@ -374,7 +370,6 @@ int main()
             case 1:
                 // Call search_book function
                 search_book(library, library_array_size);
-             
                 // Output newline to terminal for readability
                 cout << endl;
                 // Prevent fall through
@@ -440,16 +435,16 @@ void show_menu(string &user_input)
     cout << "-----------------------" << endl;
     cout << "          Menu         " << endl;
     cout << "-----------------------" << endl;
-    cout << "1. Search a book" << endl;
-    cout << "2. Rent a book" << endl;
-    cout << "3. Return a book" << endl;
-    cout << "4. Show my information" << endl;
-    cout << "5. Show all books" << endl;
-    cout << "6. Exit" << endl;
+    cout << " 1. Search a book" << endl;
+    cout << " 2. Rent a book" << endl;
+    cout << " 3. Return a book" << endl;
+    cout << " 4. Show my information" << endl;
+    cout << " 5. Show all books" << endl;
+    cout << " 6. Exit" << endl;
     // Output newline to terminal for readability
     cout << endl;
     // Prompt to select one of six options
-    cout << "Select (1-6) : ";
+    cout << " Select (1-6) : ";
     // Store user input into given user_input variables
     getline(cin, user_input);
  
@@ -575,7 +570,6 @@ void fill_library_array(BookNodePtr library[3], ifstream& inputFile)
             // Insert the Novel object into Linked List of Novel
             insert_node_by_ascending_id(novels_head, novel);
         }
-        
     }
     // Set first element to head of Linked List of Children Books
     library[0] = children_books_head;
@@ -713,7 +707,6 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 // Insert created node into to Linked List of Teachers
                 // sorted in ascending order by id
                 insert_node_by_ascending_id(teacher_head, teacher);
-
             }
         }
         // If given id is greater than or equal to 101 and less than or equal to 300
@@ -824,7 +817,7 @@ void search_book(BookNodePtr library[3], int library_size)
         // Output newline to terminal for readability
         cout << endl;
         // Prompt user for book code
-        cout << "Enter code : ";
+        cout << " Enter code : ";
         // Save user input into book_code variable
         cin >> book_code;
         // Ignore last input in cin to allow getline to work
@@ -832,7 +825,7 @@ void search_book(BookNodePtr library[3], int library_size)
         // Clear the cin stream to allow geline to work
         cin.clear();
         // Prompt user for title
-        cout << "Enter title : ";
+        cout << " Enter title : ";
         // Save user input into title
         getline(cin, title);
         // If given code is greater than 1001 and less than or equal to 2000
@@ -855,42 +848,39 @@ void search_book(BookNodePtr library[3], int library_size)
         // If code is invalid
         else
         {
-            // Throw custom exception InputException
-            throw CustomException("Given book code is not valid!");
+            // Throw custom exception ProgramException
+            throw ProgramException(" Given book code is not valid!");
         }
-        // If given title is empty or only has spaces then throw const char* message
+        // If given title is empty or only has spaces
         if (title.empty() || title.find_first_not_of(' ') == title.npos)
         {
-            // throw custom exception InputException
-            throw CustomException("Given title should not be empty!");
+            // throw custom exception ProgramException
+            throw ProgramException(" Given title should not be empty!");
         }
-       
-        // Set requested_book pointer to result of function to find book with given code and title
+       // Set requested_book pointer to result of function to find 
+       // book with given code and title
         requested_book = find_book_with_given_code_and_title(book_head, book_code, title);
-        // If requested_book is NULL
+        // If requested_book is stil NULL
         if (requested_book == NULL)
         {
-            // Throw const char* exception
-            throw CustomException("No Match");
+            // Throw custom exception ProgramException
+            throw ProgramException(" No Match");
         }
-
+        // Output newline for readability
+        cout << endl;
+        // Output that the book with given title and book code exists 
+        cout << " " << title << "(" << book_code << ") exists." << endl;
+        // Call function that display information about book searched
+        requested_book->getData()->displaySearchedInfo();
     }
     // Catch exception if one is thrown
-    catch (const CustomException& exception)
+    catch (const ProgramException& exception)
     {
         // Output newline for readability
         cout << endl;
         // Output const char* message to terminal
         cout << exception.get_message() << endl;
-        // Get out of function
-        return;
     }
-    // Output newline for readability
-    cout << endl;
-    // Output that the book with given title and book code exists 
-    cout << title << "(" << book_code << ") exists." << endl;
-    // Call function that display information about book searched
-    requested_book->getData()->displaySearchedInfo();
 }
 
 BookNodePtr find_book_with_given_code_and_title(BookNodePtr head, int code, string title)
@@ -941,13 +931,11 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         // Store given id from user to variable id
         cin >> id;
         // If given id is invalid
-        if (id < 1 && id > 300)
+        if (id < 1 || id > 300)
         {
             // throw custom exception
-            throw CustomException("Given id is invalid");
+            throw ProgramException("Given id is invalid");
         }
-        
-       
         // Clear the cin stream to allow geline to work
         cin.clear();
         // Ignore last input in cin to allow getline to work
@@ -960,7 +948,7 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         if (title.empty() || title.find_first_not_of(' ') == title.npos)
         {
             // throw custom exception
-            throw CustomException("Given title should not be empty!");
+            throw ProgramException("Given title should not be empty!");
         }
         // If given id is greater than or equal to 1 and less than or equal to 100
         if (id >= 1 && id <= 100)
@@ -969,16 +957,12 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
             // given person array, a Linked List of teachers
             person_ptr = person[0];
         }
-        // Otherwise if given id is 
-        else if (id >= 101 && id <= 300)
-        {
-            person_ptr = person[1];
-        }
-        // otherwise
+        // Otherwise 
         else
         {
-            // Throw const char* exception
-            throw CustomException("Given id is invalid");
+            // Make person_ptr point to first element of 
+          // given person array, a Linked List of teachers
+            person_ptr = person[1];
         }
         // Set wanted_person to result of function 
         // to find person with given id
@@ -986,16 +970,16 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         // If wanted_person is still NULL
         if (wanted_person == NULL)
         {
-            // throw exception
-            throw CustomException("Person with given id does not exist");
+            // throw custom exception ProgramException
+            throw ProgramException("Person with given id does not exist");
         }
         // Set book to result of function to search book by given title
         book = search_book_with_title(library, library_array_size, title);
         // If book is still NULL
         if (book == NULL)
         {
-            // throw custom exception
-            throw CustomException("Book with title of " + title + " does not exist");
+            // throw custom exception ProgramException
+            throw ProgramException("Book with title of " + title + " does not exist");
         }
         // Set rented to the number of books rented in searched person object
         rented = wanted_person->getData()->getCount();
@@ -1005,11 +989,14 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
             // throw rented as integer exception
             throw rented;
         }
+        // Declare and initialize variable to store book code of searched book node
         int book_code = book->getData()->getCode();
+        // Declare and initialize variable to store name of searched person node
         string name = wanted_person->getData()->getName();
         if (wanted_person->getData()->hasRentedBookWithGivenCode(book_code))
         {
-            throw CustomException(name + " already rented book with title " + title);
+            // throw custom exception ProgramException
+            throw ProgramException(name + " already rented book with title " + title);
         }
         // Call function of the data of wanted_person 
         // node to display information of books they rented
@@ -1028,8 +1015,9 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
           // if available is 0
           if (available == 0)
           {
-             // throw custom exception
-             throw CustomException("All copies of " + book->getData()->getTitle() + " have been rented out.");
+             // throw custom exception ProgramException
+             throw ProgramException("All copies of " + book->getData()->getTitle() 
+                 + " have been rented out.");
           }
           // Declare and initialize book_code as the 
           // book code of data of searched book node
@@ -1040,18 +1028,15 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
           book->getData()->markRented();
           // Notify user that rent succeeded
          cout << "**** Rent succeed. Check your info!" << endl;
-          
         }
     }
     // Catch custom  exception thrown
-    catch (const CustomException& e)
+    catch (const ProgramException& e)
     {
         // Output newline to terminal for readability
         cout << endl;
         // Notify
         cout << e.get_message() << endl;
-        // Get out of function
-        return;
     }
     
     // Catch integer exception thrown
@@ -1061,10 +1046,7 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         cout << endl;
         cout << "Hello " << wanted_person->getData()->getName() 
             << ", you have already rented " << exception << " books" << endl;
-        // Get out of function
-        return;
     }
- 
 }
 
 PersonNodePtr search_person_with_given_id(PersonNodePtr head, int id)
@@ -1137,8 +1119,8 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         // If given id is not valid 
         if (id < 1 || id > 300)
         {
-            // throw const char* exception
-            throw CustomException("Given id is invalid");
+            // throw custom defined exception
+            throw ProgramException("Given id is invalid");
         }
         // Prompt user for book code
         cout << "Enter the book code to return : ";
@@ -1150,8 +1132,8 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         // If book pointer is still NULL
         if (book == NULL)
         {
-           // throw string exception
-         throw CustomException("Book with code " + to_string(book_code) + " does not exist");
+           // throw custom defined exception
+           throw ProgramException("Book with code " + to_string(book_code) + " does not exist");
         }
         // If given id is greater than 1 and less than equal to 100
         if (id >= 1 && id <= 100)
@@ -1171,7 +1153,7 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         if (wanted_person == NULL)
         {
             // throw const char* exception
-            throw CustomException("Person with given id does not exist");
+            throw ProgramException("Person with given id does not exist");
         }
         // Declare and initialize variable to store 
         // if a person has rented a book with given book_code
@@ -1180,7 +1162,7 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         if (!book_rented)
         {
             // throw integer exception
-            throw CustomException("User with id of " + to_string(id) + 
+            throw ProgramException("User with id of " + to_string(id) + 
                                  " did not rent book with book code of " + to_string(book_code));
         }
         // Output newline to terminal for readability
@@ -1205,13 +1187,13 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         }
     }
     // Catch integer exception
-    catch (const CustomException& e)
+    catch (const ProgramException& e)
     {
+        // Output newline to terminal for readability
+        cout << endl;
         // Notify
         cout << e.get_message() << endl;
         //cout << "User " << id << "did not rent book with code " << exception << endl;
-        // Get out of this function
-        return;
     }
 }
 
@@ -1282,7 +1264,7 @@ void show_person_info(PersonNodePtr person[2], int person_array_size, BookNodePt
         if (id < 1 || id > 300)
         {
             // throw const char* exception
-            throw "Given id is invalid";
+            throw ProgramException("Given id is invalid");
         }
         // Ignore last input in cin to allow getline to work
         cin.ignore();
@@ -1296,7 +1278,7 @@ void show_person_info(PersonNodePtr person[2], int person_array_size, BookNodePt
         if (name.empty() || name.find_first_not_of(' ') == name.npos)
         {
             // throw const char* message
-            throw "Given name should not be empty!";
+            throw ProgramException("Given name should not be empty!");
         }
         // If id is greater than or equal to 1 and less than equal to 100
         if (id >= 1 && id <= 100)
@@ -1317,7 +1299,7 @@ void show_person_info(PersonNodePtr person[2], int person_array_size, BookNodePt
         if (wanted_person == NULL)
         {
             // throw integer exception
-            throw id;
+            throw ProgramException("Person with id of " + to_string(id) + " does not exist");
         }
         // Declare and initialize  variable to store the 
         // max number of books the searched person can have
@@ -1339,24 +1321,14 @@ void show_person_info(PersonNodePtr person[2], int person_array_size, BookNodePt
          }
     }
     // if integer exception is caught
-    catch (int exception)
+    catch (const ProgramException& e)
     {
         // Output newline to terminal
         cout << endl;
         // Notify
-        cout << "Person with id of " << exception << " does not exist" << endl;
-       
-        
-
+        cout << e.get_message() << endl;
     }
-    // if const char* exception is caught
-    catch (const char* message)
-    {
-        // Output newline to terminal
-        cout << endl;
-        // Notify
-        cout << message << endl;
-    }
+    
 }
 
 void show_all_books(BookNodePtr library[3], int library_array_size, string book_types[], int book_type_size)
@@ -1412,39 +1384,6 @@ void show_all_books(BookNodePtr library[3], int library_array_size, string book_
         cout << endl;
     }
 }
-
-void display_library_array(BookNodePtr library[3], int library_array_size)
-{
-    
-    for (int i = 0; i < library_array_size; i++)
-    {
-        
-        BookNodePtr traverse = library[i];
-        
-        while (traverse != NULL)
-        {
-            traverse->getData()->displayAllInfo();
-            traverse = traverse->getLink();
-        }
-        cout << endl;
-    }
-}
-
-void display_person_array(PersonNodePtr person[2], int array_size)
-{
-    for (int i = 0; i < array_size; i++)
-    {
-        PersonNodePtr traverse = person[i];
-        while (traverse != NULL)
-        {
-            traverse->getData()->displayInfo();
-            traverse = traverse->getLink();
-        }
-    }
-    cout << endl;
-}
-
-
 
 template<typename T, typename S>
 void insert_node_by_ascending_id(T& head, S object)

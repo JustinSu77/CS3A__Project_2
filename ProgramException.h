@@ -2,7 +2,7 @@
 #include <iostream>
 
 // User-defined exception class
-class CustomException
+class ProgramException
 {
 	// public member functions
 	public:
@@ -11,14 +11,14 @@ class CustomException
 			Precondition: InputException is thrown with no arguments
 			Postcondition: Set value of private member variable to "Error"
 		**/
-		CustomException();
+		ProgramException();
 
 		/**
 			Purpose: Constructor with 1 argument.
 			Precondition: InputException is thrown with 1 argument
 			Postcondition: Set value of private member variable to given message
 		**/
-		CustomException(std::string message);
+		ProgramException(std::string message);
 		
 		/**
 			Purpose: Getter function for private member variable message
