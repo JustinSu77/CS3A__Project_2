@@ -56,7 +56,7 @@ class Student : public Person
 		
 		// Implementation of the pure virtual function in Parent class
 
-		void displayInfo() const;
+		 
 
 		/**
 			Purpose: Return value of id for templated function that

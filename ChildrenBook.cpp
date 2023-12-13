@@ -69,7 +69,7 @@ void ChildrenBook::markReturned()
 void ChildrenBook::displayInfoForPerson() const
 {
 	// Output value of private member variable title, code, and age formatted to terminal
-	std::cout << "* " << getTitle() << "(" << getCode() << ")" 
+	std::cout << " * " << getTitle() << "(" << getCode() << ")" 
 		<< " - " << " age " << getAge() <<  std::endl;
 }
 
@@ -77,7 +77,7 @@ void ChildrenBook::displayAllInfo() const
 {
 	// Outout values of private member variables code, title with no underscore, age, available, and rented
 	std::cout << " " << getCode() << std::setw(30) << get_formatted_title() 
-		<< std::setw(4) << getAge() << std::setw(10) << getAvailable() 
+		<< std::setw(4) << getAge() << std::setw(9) << getAvailable() 
 		<< std::setw(7) << getRented() << std::endl;
 }
 

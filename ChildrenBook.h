@@ -4,7 +4,6 @@
 	Assignment Title: Project #2
 	Purpose: ChildenBook.h for Project #2
 **/
-
 #pragma once
 #include "Book.h"
 #include <iomanip>
@@ -17,31 +16,31 @@ class ChildrenBook : public Book
 		/**
 			Purpose: Default constructor.
 			Precondition: ChildrenBook is constructed with no arguments
-			Postcondition: Private member variable age is set to 0
+			Result: Private member variable age is set to 0
 		**/
 		ChildrenBook();
 
 		/**
 			Purpose: Constructor with 5 arguments.
 			Precondition: ChildrenBook object is constructed with 5 arguments
-			Postcondition: - Private member variable code is set to given code
-						   - Private member variable title is set to given title
-						   - Private member variable available is set to given available
-						   - Private member variable rented is set to given rented
+			Result: - Private member variable code is set to given code
+				    - Private member variable title is set to given title
+				    - Private member variable available is set to given available
+					- Private member variable rented is set to given rented
 		**/
 		ChildrenBook(int code, std::string title, int available, int rented, int age);
 
 		/**
 			Purpose: Setter for private member variable age.
 			Precondition: ChildrenBook is instantiated
-			Postcondition: Private member variable age is set to given age
+			Result: Private member variable age is set to given age
 		**/
 		void setAge(int age);
 
 		/**
 			Purpose: Getter for private member variable age.
 			Precondition: ChildrenBook is instantiated
-			Postcondition: The value of private member variable age is returned
+			Result: The value of private member variable age is returned
 		**/
 		int getAge() const;
 		
@@ -50,9 +49,13 @@ class ChildrenBook : public Book
 			Purpose: Display information about ChildrenBook object 
 					 for function that Search a Book.
 			Precondition: ChildrenBook is instantiated
-			Postcondition: Output the category and the private member 
-						   variables age, available, and rented 
+			Result: Output the category and the private member 
+					variables age, available, and rented 
 		**/
+
+		// Implementation for inherited pure virtual functions 
+		// for polymorphism so derived classes of this class 
+		// will have same functions but unique outputs
 		void displaySearchedInfo() const;
 		
 		/**
@@ -60,7 +63,7 @@ class ChildrenBook : public Book
 					 for function that inserts templated nodes into Linked List 
 					 by ascending order of id.
 			Precondition: ChildrenBook is instantiated
-			Postcondition: Return the value of inherited private member variable code
+			Result: Return the value of inherited private member variable code
 		**/
 		int getIdentification() const;
 
@@ -68,8 +71,8 @@ class ChildrenBook : public Book
 			Purpose: Denotes a ChildrenBook object as being rented for 
 					 function to Rent a Book and Return a Book.
 			Precondition: ChildrenBook is instantiated
-			Postcondition: - The value of private member variable rented is increased by 1
-						   - The value of private member variable available is decreased by 1
+			Result: - The value of private member variable rented is increased by 1
+					- The value of private member variable available is decreased by 1
 		**/
 		 void markRented();
 
@@ -77,8 +80,8 @@ class ChildrenBook : public Book
 			Purpose: Denotes a ChildrenBook object as being returned for 
 					 function for Rent a Book and Return a Book.
 			Precondition: ChildrenBook is instantiated
-			Postcondition: - The value of private member variable rented is decreased by 1
-						   - The value of private member variable available is increased by 1
+			Result: - The value of private member variable rented is decreased by 1
+					- The value of private member variable available is increased by 1
 		**/
 		void markReturned();
 
@@ -86,8 +89,9 @@ class ChildrenBook : public Book
 			Purpose: Output information of ChildrenBook object for function 
 					 for Show Person Information
 			Precondition: ChildrenBook is instantiated
-			Postcondition: Outputs the values of private member 
-						   variable title, code, and age neatly formated to terminal
+			Result: Outputs the values of private member 
+						   variable title, code, and age neatly 
+						   formated to terminal
 		**/
 		void displayInfoForPerson() const;
 
@@ -95,21 +99,22 @@ class ChildrenBook : public Book
 			Purpose: Output all information of ChildrenBook object 
 					 for function for Show All Books.
 			Precondition: ChildrenBook is instantiated
-			Postcondition: Outputs the values of private member variables code, 
-						   title with underscores removed, age, available, and rented
+			Result: Outputs the values of private member variables code, 
+					title with underscores removed, age, available, and rented
 		**/
 		void displayAllInfo() const;
 
 		/**
 			Purpose: Return title with underscores replaced by space.
 			Precondition: ChildrenBook is instantiated
-			Postcondition: Returns the inherited private member 
-						   variable title with underscore replaced by space
+			Result: Returns the inherited private member 
+					variable title with underscore replaced by space
 		**/
 		std::string get_formatted_title() const;
 	
 	// Private member variables
 	private:
+		// Private member variable age
 		int age;
 };
 

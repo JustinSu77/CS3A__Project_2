@@ -74,7 +74,7 @@ class Person
 		// Pure virtual functions to be implemented in child classes as 
 		// the behaviors are different depending on which Child class calls it
 		
-		virtual void displayInfo() const = 0;
+		 
 
 		/**
 			Purpose: Return value of id for templated function that 

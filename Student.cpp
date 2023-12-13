@@ -26,7 +26,7 @@ void Student::setCodeAtIndex(int index, int book_code)
 	if (index < 0 || index > getMaxBooksToRent())
 	{
 		// Notify
-		std::cout << "Given index is out of bounds" << std::endl;
+		std::cout << " Given index is out of bounds" << std::endl;
 		// Exit program with error code 1
 		exit(1);
 	}
@@ -40,7 +40,7 @@ void Student::setCodeAtIndex(int index, int book_code)
 	if (index < 0 || index > getMaxBooksToRent())
 	{
 		// Notify
-		std::cout << "Given index is out of bounds" << std::endl;
+		std::cout << " Given index is out of bounds" << std::endl;
 		// Exit program with error code 1
 		exit(1);
 	}
@@ -48,21 +48,7 @@ void Student::setCodeAtIndex(int index, int book_code)
 	return code[index];
 }
 
-void Student::displayInfo() const
-{
-	std::cout << getId() << " " << getName() << " " << getCount();
-	if (getCount() == 1)
-	{
-		std::cout << " " <<  code[0] << " ";
-	}
-	if (getCount() == 2)
-	{
-		std::cout <<  " " << code[0] << " " << code[1] << " ";
-	}
-	std::cout << std::endl;
-}
-
-int Student::getIdentification() const
+ int Student::getIdentification() const
 {
 	// Return the value of inherited private member variable id
 	return getId();
@@ -74,21 +60,21 @@ void Student::displayRentInfo() const
 	if (getCount() == 0)
 	{
 		// Output to name and count to terminal in plural tense
-		std::cout << "You are " << getName() << ".  " << "You rented " 
+		std::cout << " You are " << getName() << ".  " << "You rented " 
 			<< getCount() << " books." << std::endl;
 	}
 	// If number of books rented is 1
 	else if (getCount() == 1)
 	{
 		// Output name and count to terminal in single tense
-		std::cout << "You are " << getName() << ".  " << "You rented " 
+		std::cout << " You are " << getName() << ".  " << "You rented " 
 			<< getCount() << " book." << std::endl;
 	}
 	// Otherwise
 	else
 	{
 		// Output name and count and the max number of books have already been rented
-		std::cout << "You are " << getName() << ".  " << "You already rented " 
+		std::cout << " You are " << getName() << ".  " << "You already rented " 
 			<< getCount() << " books." << std::endl;
 	}
 }

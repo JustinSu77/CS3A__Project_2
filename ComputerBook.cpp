@@ -69,7 +69,7 @@ void ComputerBook::displayInfoForPerson() const
 {
 	// Output values of private member variable title, code, 
 	// and publisher neatly formatted to terminal
-	std::cout << "* " << getTitle() << "(" << getCode() << ")" << " - " 
+	std::cout << " * " << getTitle() << "(" << getCode() << ")" << " - " 
 		<< " publisher  " << getPublisher() << std::endl;
 }
 
