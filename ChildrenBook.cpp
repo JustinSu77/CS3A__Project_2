@@ -21,7 +21,6 @@ ChildrenBook::ChildrenBook(int code, std::string title, int available, int rente
 
 }
 
-
 void ChildrenBook::setAge(int age)
 {
 	// Sets private member variable age to given age
@@ -41,7 +40,8 @@ void ChildrenBook::displaySearchedInfo() const
 	// Output value of private member variable age to terminal
 	std::cout << " age : " << getAge() << std::endl;
 	// Output value of private member variables available and rented to terminal
-	std::cout << " " << getAvailable() << " available, " << getRented() << " rented" << std::endl;
+	std::cout << " " << getAvailable() << " available, " 
+		      << getRented() << " rented" << std::endl;
 }
 
 int ChildrenBook::getIdentification() const
@@ -68,22 +68,27 @@ void ChildrenBook::markReturned()
 
 void ChildrenBook::displayInfoForPerson() const
 {
-	// Output value of private member variable title, code, and age formatted to terminal
+	// Output value of private member variable title, code, 
+	// and age formatted to terminal
 	std::cout << " * " << getTitle() << "(" << getCode() << ")" 
-		<< " - " << " age " << getAge() <<  std::endl;
+		<< " - " << "age " << getAge() <<  std::endl;
 }
 
 void ChildrenBook::displayAllInfo() const
 {
-	// Outout values of private member variables code, title with no underscore, age, available, and rented
-	std::cout << " " << getCode() << std::setw(30) << get_formatted_title() 
-		<< std::setw(4) << getAge() << std::setw(9) << getAvailable() 
-		<< std::setw(7) << getRented() << std::endl;
+	// Outout values of private member variables code, title with 
+	// no underscore, age, available, and rented
+	std::cout << " " << getCode() << std::setw(30) 
+		      << get_formatted_title() 
+		      << std::setw(4) << getAge() << std::setw(9) 
+		      << getAvailable() << std::setw(7) 
+		      << getRented() << std::endl;
 }
 
 std::string ChildrenBook::get_formatted_title() const
 {
-	// Declare and initialize string variable to the value if private member variable title
+	// Declare and initialize string variable to the value 
+	// if private member variable title
 	std::string title = getTitle();
 	// Replace the underscores in title with spaces
 	std::replace(title.begin(), title.end(), '_', ' ');

@@ -72,7 +72,7 @@ void Novel::displayInfoForPerson() const
 	// Output the values of inherited private member variables title 
 	// and code and value of private member variable publish_date formatted to terminal
 	std::cout << " * " << getTitle() << "(" << getCode() << ")" 
-		<< " - " << " publish date " << get_publish_date() << std::endl;
+		<< " - " << "publish date " << get_publish_date() << std::endl;
 }
 
 void Novel::displayAllInfo() const

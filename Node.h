@@ -8,6 +8,7 @@
 #define NODE_H
 
 // Templated Node class
+// Use T as template data type
 	template<class T>
 	class Node
 	{
@@ -110,11 +111,3 @@
 		return link;
 	}
 #endif
- 
-
-
- 
-
-
-
-

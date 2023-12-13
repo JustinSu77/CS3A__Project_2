@@ -1,3 +1,9 @@
+/**
+	Name: Justin Su
+	Date: 11/28/2023
+	Assignment Title: Project #2
+	Purpose: Student.cpp for Project #2
+**/
 #include "Student.h"
 
 // Calls default constructor of Parent class to set inherited 
@@ -84,9 +90,6 @@ int Student::getMaxBooksToRent() const
 	// Return the size of private member variable code array
 	return sizeof(code) / sizeof(int);
 }
-
-
- 
 
 bool Student::hasRentedBookWithGivenCode(int book_code) const
 {

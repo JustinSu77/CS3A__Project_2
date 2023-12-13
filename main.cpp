@@ -99,7 +99,6 @@ void show_menu(string& user_input);
 **/
 bool given_string_is_integer(const string& input);
 
- 
 /**
     Purpose: Function to be called when user select 
              option to Search a Book.
@@ -673,10 +672,10 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
     int third_book_code = 0;
     // Declare and initialize pointer variable for 
     // head of Linked list of dynamic polymorphic Person objects of Teachers
-    PersonNodePtr teacher_head = NULL;
+    PersonNodePtr teacher_head = nullptr;
     // Declare and initialize pointer variable for 
     // head of Linked list of dynamic polymorphic Person objects of Students
-    PersonNodePtr student_head = NULL;
+    PersonNodePtr student_head = nullptr;
     // Read entire file opened by given inputFile object
     while (!inputFile.eof()) 
     {
@@ -693,7 +692,7 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 // Read in first book code
                 inputFile >> first_book_code;
                 // Declare and initialize Person pointer that will create a dynamic polymorphic Person object
-                Person* teacher = NULL;
+                Person* teacher = nullptr;
                 // Try to allocate memory for dynamic polymorphic object
                 try 
                 {
@@ -718,7 +717,7 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 // Read in first book code and second book code
                 inputFile >> first_book_code >> second_book_code;
                 // Declare and initialize Person pointer that will create a dynamic polymorphic Person object
-                Person* teacher = NULL;
+                Person* teacher = nullptr;
                 // Try to allocate memory for dynamic polymorphic object
                 try 
                 {
@@ -743,7 +742,7 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 // Read in first book code, second book code, and third_book_code
                 inputFile >> first_book_code >> second_book_code >> third_book_code;
                 // Declare and initialize Person pointer that will create a dynamic polymorphic Person object
-                Person* teacher = NULL;
+                Person* teacher = nullptr;
                 // Try to allocate memory for dynamic polymorphic object
                 try 
                 {
@@ -766,7 +765,7 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
             else 
             {
                 // Declare and initialize Person pointer that will create a dynamic polymorphic Person object
-                Person* teacher = NULL;
+                Person* teacher = nullptr;
                 // Try to allocate memory for dynamic polymorphic object
                 try 
                 {
@@ -798,7 +797,7 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 inputFile >> first_book_code;
                 // Declare and initialize Person pointer that will 
                 // create a dynamic polymorphic person object
-                Person* student = NULL;
+                Person* student = nullptr;
                 // Try to allocate memory for dynamic polymorphic object
                 try 
                 {
@@ -824,7 +823,7 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 inputFile >> first_book_code >> second_book_code;
                 // Declare and initialize Person pointer that will 
                 // create a dynamic polymorphic person object
-                Person* student = NULL;
+                Person* student = nullptr;
                 // Try to allocate memory for dynamic polymorphic object
                 try 
                 {
@@ -848,7 +847,7 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
             {
                 // Declare and initialize Person pointer that will 
                // create a dynamic polymorphic person object
-                Person* student = NULL;
+                Person* student = nullptr;
                 // Try to allocate memory for dynamic polymorphic object
                 try 
                 {
@@ -885,11 +884,11 @@ void search_book(BookNodePtr library[3], int library_size)
     string title = "";
     // Declare and initialize  variable to store head of 
     // Linked List in given library to traverse
-    BookNodePtr book_head = NULL;
+    BookNodePtr book_head = nullptr;
     // Declare and initialize variable to store BookNodePtr node 
     // with data of a polymorphic Book object that 
     // has the given book_code and title
-    BookNodePtr requested_book = NULL;
+    BookNodePtr requested_book = nullptr;
     // Put main function logic in try so 
     // any exception can be handled
     try
@@ -1105,6 +1104,8 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
             // throw rented as integer exception
             throw rented;
         }
+        // Output newline to terminal for readability
+        cout << endl;
         // Call function of the data of wanted_person 
         // node to display information of books they rented
         wanted_person->getData()->displayRentInfo();
@@ -1154,7 +1155,8 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         // Output message that notifies searched person 
         // already reached max number of books rented
         cout << " Hello " << wanted_person->getData()->getName() 
-            << ", you have already rented " << exception << " books" << endl;
+             << ", you have reached your max number of books rented of "
+             << exception << endl;
     }
 }
 
@@ -1266,6 +1268,12 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         }
         // Otherwise
         else
+        {
+            // throw custom exception ProgramException
+            throw ProgramException(" Given book code is invalid!");
+        }
+        // If book code is less than 1001 or greater than 4000
+        if (book_code_as_int < 1001 || book_code_as_int > 4000)
         {
             // throw custom exception ProgramException
             throw ProgramException(" Given book code is invalid!");
@@ -1415,7 +1423,7 @@ void show_person_info(PersonNodePtr person[2], int person_array_size, BookNodePt
         else
         {
             // throw custom exception ProgramException
-            throw ProgramException(" Given book code is invalid!");
+            throw ProgramException(" Given id is invalid!");
         }
         // If id is invalid
         if (id_as_int < 1 || id_as_int > 300)
@@ -1491,6 +1499,10 @@ void show_person_info(PersonNodePtr person[2], int person_array_size, BookNodePt
 
 void show_all_books(BookNodePtr library[3], int library_array_size, string book_types[], int book_type_size)
 {
+    // Output newline to terminal
+    cout << endl;
+    // Output newline to terminal
+    cout << endl;
     // Loop through given arrays library and book_types
     for (int i = 0; i < library_array_size; i++)
     {
@@ -1547,10 +1559,11 @@ template<typename T, typename S>
 void insert_node_by_ascending_id(T& head, S object)
 {
    // Try to allocate node for Linked List
+    T newNode = nullptr;
     try
     {
         // Create templated node with templated object as its data
-        T newNode = new Node<S>(object, NULL);
+       newNode = new Node<S>(object, NULL);
     }
     // If failed to allocate memory
     catch (bad_alloc)
@@ -1614,7 +1627,7 @@ void deallocate_array(T* array, int array_size)
         T traverse = array[i];
         // Declare and initialize templated 
         // pointer to store node to be deleted
-        T discard = NULL;
+        T discard = nullptr;
         // Traverse Linked List to end
         while (traverse != NULL)
         {
@@ -1627,7 +1640,7 @@ void deallocate_array(T* array, int array_size)
             // Delete node
             delete discard;
         }
-        // Set current element to NULL
-        array[i] = nullptr;
+        // Set current element to NULL 
+        array[i] = NULL;
     }
 }

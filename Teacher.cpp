@@ -102,7 +102,6 @@ int Teacher::getMaxBooksToRent() const
 	return sizeof(code) / sizeof(int);
 }
 
-
 bool Teacher::hasRentedBookWithGivenCode(int book_code) const
 {
 	// Loop through private member variable code
@@ -172,4 +171,3 @@ void Teacher::returnBook(int book_code)
 		setCount(getCount() - 1);
 	}
 }
-

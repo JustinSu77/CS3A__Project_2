@@ -73,5 +73,3 @@ int Book::getRented() const
 	// Return value of private member variable rented
 	return rented;
 }
-
- 

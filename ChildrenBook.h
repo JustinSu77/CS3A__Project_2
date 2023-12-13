@@ -8,7 +8,7 @@
 #include "Book.h"
 #include <iomanip>
 
-// ChildrenBook class inherits from Book
+// ChildrenBook class inherits from Book class
 class ChildrenBook : public Book
 {
 	// Public member functions
@@ -22,11 +22,14 @@ class ChildrenBook : public Book
 
 		/**
 			Purpose: Constructor with 5 arguments.
-			Precondition: ChildrenBook object is constructed with 5 arguments
+			Precondition: ChildrenBook object is constructed 
+						  with 5 arguments
 			Result: - Private member variable code is set to given code
 				    - Private member variable title is set to given title
-				    - Private member variable available is set to given available
-					- Private member variable rented is set to given rented
+				    - Private member variable available is 
+					  set to given available
+					- Private member variable rented is 
+					  set to given rented
 		**/
 		ChildrenBook(int code, std::string title, int available, int rented, int age);
 
@@ -44,7 +47,9 @@ class ChildrenBook : public Book
 		**/
 		int getAge() const;
 		
-		// Implementations of pure virtual functions so this class will not be abstract
+		// Implementation for inherited pure virtual functions 
+		// for polymorphism so derived classes of this class 
+		// will have same functions but unique outputs
 		/**
 			Purpose: Display information about ChildrenBook object 
 					 for function that Search a Book.
@@ -53,17 +58,16 @@ class ChildrenBook : public Book
 					variables age, available, and rented 
 		**/
 
-		// Implementation for inherited pure virtual functions 
-		// for polymorphism so derived classes of this class 
-		// will have same functions but unique outputs
 		void displaySearchedInfo() const;
 		
 		/**
-			Purpose: Return the value of private member variable code of ChildrenBook object 
-					 for function that inserts templated nodes into Linked List 
-					 by ascending order of id.
+			Purpose: Return the value of private member variable code 
+					 of ChildrenBook object for function that inserts 
+					 templated nodes into Linked List by 
+				     ascending order of id.
 			Precondition: ChildrenBook is instantiated
-			Result: Return the value of inherited private member variable code
+			Result: Return the value of inherited 
+			        private member variable code
 		**/
 		int getIdentification() const;
 
@@ -71,8 +75,10 @@ class ChildrenBook : public Book
 			Purpose: Denotes a ChildrenBook object as being rented for 
 					 function to Rent a Book and Return a Book.
 			Precondition: ChildrenBook is instantiated
-			Result: - The value of private member variable rented is increased by 1
-					- The value of private member variable available is decreased by 1
+			Result: - The value of private member variable 
+			          rented is increased by 1
+					- The value of private member variable 
+					  available is decreased by 1
 		**/
 		 void markRented();
 
@@ -80,18 +86,20 @@ class ChildrenBook : public Book
 			Purpose: Denotes a ChildrenBook object as being returned for 
 					 function for Rent a Book and Return a Book.
 			Precondition: ChildrenBook is instantiated
-			Result: - The value of private member variable rented is decreased by 1
-					- The value of private member variable available is increased by 1
+			Result: - The value of private member variable 
+			          rented is decreased by 1
+					- The value of private member variable 
+					  available is increased by 1
 		**/
 		void markReturned();
 
 		/**
 			Purpose: Output information of ChildrenBook object for function 
-					 for Show Person Information
+					 Show Person Information.
 			Precondition: ChildrenBook is instantiated
 			Result: Outputs the values of private member 
-						   variable title, code, and age neatly 
-						   formated to terminal
+				    variable title, code, and age neatly 
+					formated to terminal
 		**/
 		void displayInfoForPerson() const;
 
@@ -114,7 +122,6 @@ class ChildrenBook : public Book
 	
 	// Private member variables
 	private:
-		// Private member variable age
+		// age for Children Books
 		int age;
 };
-
