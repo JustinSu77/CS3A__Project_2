@@ -8,14 +8,14 @@
 
 // Calls parent default constructor
 // Sets private member variable age to 0
-ChildrenBook::ChildrenBook() : Book(), age(0) 
+ChildrenBook::ChildrenBook() : Book(), age(0)
 {
 
 }
 
 // Calls parent constructor with 4 arguments
 // Sets private member variable age to given age
-ChildrenBook::ChildrenBook(int code, std::string title, int available, int rented, int age) : 
+ChildrenBook::ChildrenBook(int code, std::string title, int available, int rented, int age) :
 	Book(code, title, available, rented), age(age)
 {
 
@@ -40,8 +40,8 @@ void ChildrenBook::displaySearchedInfo() const
 	// Output value of private member variable age to terminal
 	std::cout << " age : " << getAge() << std::endl;
 	// Output value of private member variables available and rented to terminal
-	std::cout << " " << getAvailable() << " available, " 
-		      << getRented() << " rented" << std::endl;
+	std::cout << " " << getAvailable() << " available, "
+		<< getRented() << " rented" << std::endl;
 }
 
 int ChildrenBook::getIdentification() const
@@ -70,19 +70,19 @@ void ChildrenBook::displayInfoForPerson() const
 {
 	// Output value of private member variable title, code, 
 	// and age formatted to terminal
-	std::cout << " * " << getTitle() << "(" << getCode() << ")" 
-		<< " - " << "age " << getAge() <<  std::endl;
+	std::cout << " * " << getTitle() << "(" << getCode() << ")"
+		<< " - " << "age " << getAge() << std::endl;
 }
 
 void ChildrenBook::displayAllInfo() const
 {
 	// Outout values of private member variables code, title with 
 	// no underscore, age, available, and rented
-	std::cout << " " << getCode() << std::setw(30) 
-		      << get_formatted_title() 
-		      << std::setw(4) << getAge() << std::setw(9) 
-		      << getAvailable() << std::setw(7) 
-		      << getRented() << std::endl;
+	std::cout << " " << getCode() << std::setw(30)
+		<< get_formatted_title()
+		<< std::setw(4) << getAge() << std::setw(9)
+		<< getAvailable() << std::setw(7)
+		<< getRented() << std::endl;
 }
 
 std::string ChildrenBook::get_formatted_title() const

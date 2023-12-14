@@ -25,67 +25,67 @@ typedef Node<Book*>* BookNodePtr;
 typedef Node<Person*>* PersonNodePtr;
 
 /**
-    Purpose: Fill given static array library with heads of linked lists 
-             of dynamic polymorphic Book objects. 
+    Purpose: Fill given static array library with heads of linked lists
+             of dynamic polymorphic Book objects.
              objects reading from file book.txt.
-    Input: - library as static array of heads of linked list 
+    Input: - library as static array of heads of linked list
              of polymorphic Book objects
            - inputFile as ifstream object that has read book.txt
     Input Requirement: - Given library array should be of type BookNodePtr
                        - Given inputFile should have opened book.txt
-    Result: - Given library array is filled with heads of 
+    Result: - Given library array is filled with heads of
               Linked Lists of dynamic polymorphic Book objects
-            - If failed to allocate memory for dynamic polymorpic 
-              object, throw bad_alloc, output message, 
+            - If failed to allocate memory for dynamic polymorpic
+              object, throw bad_alloc, output message,
               and exit with error code 1
 **/
 void fill_library_array(BookNodePtr library[3], ifstream& inputFile);
 
 /**
-    Purpose: Fill static array with linked lists of dynamic 
-             polymorphic Person. 
+    Purpose: Fill static array with linked lists of dynamic
+             polymorphic Person.
              objects reading from file person.txt.
-    Input: - person as a static array of heads of linked list 
+    Input: - person as a static array of heads of linked list
              of polymorphic person objects
            - inputFile as ifstream object that has read person.txt
     Input Requirement: - Given person array should be of type PersonNodePtr
                        - Given inputFile should have opened person.txt
-    Result: - Given person array is filled with heads of Linked Lists 
+    Result: - Given person array is filled with heads of Linked Lists
               of polymorphic Person objects
-            - If failed to allocate memory for dynamic polymorpic 
+            - If failed to allocate memory for dynamic polymorpic
               object, output message and exit with error code 1
 **/
 void fill_person_array(PersonNodePtr person[2], ifstream& inputFile);
 
 /**
-    Purpose: Create and insert node with data of given templated 
-             object into Linked List of type T in 
+    Purpose: Create and insert node with data of given templated
+             object into Linked List of type T in
              ascending order of id.
     Input: - head as templated head of Linked List
            - object as templated instance of a class
-    Input Requirement: - Given head should be the head of a 
+    Input Requirement: - Given head should be the head of a
                          Linked List with data type T
-                       - Given object should be a instance 
+                       - Given object should be a instance
                          of a class of data type S
-                       - Given object should have an accessable 
+                       - Given object should have an accessable
                          id private member variable
-    Result: - Node with data of given object is inserted 
+    Result: - Node with data of given object is inserted
               into Linked List with head of given head
-            - If failed to allocate memory for dynamic Node object, 
+            - If failed to allocate memory for dynamic Node object,
               output message and exit program with error code 1
 **/
- template<class T, class S>
+template<class T, class S>
 void insert_node_by_ascending_id(T& head, S object);
 
- /**
-    Purpose: Show and prompt user a numbered selection of tasks 
-             to run for this program.
-    Input: user_input as the variable to store 
-           the option the user chooses
-    Input Requirement: Given user_input is of type string
-    Result: - Display a list of tasks to be run for this program
-            - Given user_input has string value of 
-              whatever user entered
+/**
+   Purpose: Show and prompt user a numbered selection of tasks
+            to run for this program.
+   Input: user_input as the variable to store
+          the option the user chooses
+   Input Requirement: Given user_input is of type string
+   Result: - Display a list of tasks to be run for this program
+           - Given user_input has string value of
+             whatever user entered
 **/
 void show_menu(string& user_input);
 
@@ -93,54 +93,54 @@ void show_menu(string& user_input);
     Purpose: Check if all the characters in given string are digits.
     Input: input as const string to check
     Input Requirement: Given input should be a string
-    Result: - Return true if all characters in 
+    Result: - Return true if all characters in
               given input string are digits
             - Return false otherwise
 **/
 bool given_string_is_integer(const string& input);
 
 /**
-    Purpose: Function to be called when user select 
+    Purpose: Function to be called when user select
              option to Search a Book.
-    Input: - library as an array of heads of Linked 
+    Input: - library as an array of heads of Linked
              List of dynamic polymorphic Book objects
-           - library_size as number of elements 
+           - library_size as number of elements
              in given library
     Input Requirement: - Given library is of type BookNodePtr
-                       - Given library_size is equal to 
+                       - Given library_size is equal to
                          number of elements in given library
                        - Given library_size is an integer
     Result: - Prompt user for book code
-            - If book code is invalid, 
+            - If book code is invalid,
               throw ProgramException with string message
             - Prompt user for book title
-            - If book title is invalid, 
+            - If book title is invalid,
               throw ProgramException with string message
-            - If given book code is invalid, 
+            - If given book code is invalid,
               throw ProgramException with string message
-            - If given book title is empty or only has spaces, 
+            - If given book title is empty or only has spaces,
               throw ProgramException with string message
-            - If book is not found, throw ProgramException 
+            - If book is not found, throw ProgramException
               with string message "No Match
-            - Output title of book, book code, category, 
+            - Output title of book, book code, category,
               publisher, availability, and rented to terminal
 **/
 void search_book(BookNodePtr library[3], int library_size);
 
 /**
-    Purpose: - Return node with  dynamic polymorphic Book object 
+    Purpose: - Return node with  dynamic polymorphic Book object
                that has the given id and title.
              - Helper function for function search_book
-    Input: - head as the head of a Linked List with dynamic 
+    Input: - head as the head of a Linked List with dynamic
              polymorphic Book objects
            - code as the code of the book to look for
            - title as the title of the book to look for
-    Input Requirement: - Given head should be the head of a 
+    Input Requirement: - Given head should be the head of a
                          Linked List of polymorphic Book objects
                        - Given code should be an integer
                        - Given title should be a string
-    Result: - Return BookNodePtr node that has dynamic 
-              polymorphic Book object as its data type with 
+    Result: - Return BookNodePtr node that has dynamic
+              polymorphic Book object as its data type with
               given code and title
             - Return NULL if node is not found
 **/
@@ -148,58 +148,58 @@ BookNodePtr find_book_with_given_code_and_title(BookNodePtr head, int code, stri
 
 /**
     Purpose: Function to call when user selects the option to Rent a Book.
-    Input: - library as an array of heads of Linked List of 
+    Input: - library as an array of heads of Linked List of
              polymorphic Book objects
-           - library_array_size as number of elements 
+           - library_array_size as number of elements
              in given library array
-           - person as an array of heads of Linked List 
+           - person as an array of heads of Linked List
              of polymorphic Person objects
-           - person_array_size as number of elements in 
+           - person_array_size as number of elements in
              given person array
     Input Requirement: - Given library array should be of type BookNodePtr
-                       - Given library_array_size should be equal to number 
+                       - Given library_array_size should be equal to number
                          of elements in given library array
                        - Given person array should be of type PersonNodePtr
-                       - Given person_array_size should be equal to 
+                       - Given person_array_size should be equal to
                          number of elements in given person array
-    Result: 
+    Result:
             - Prompt user for id
-            - If given is id invalid, throw ProgramException 
+            - If given is id invalid, throw ProgramException
               with string message
-            - If given id is out of bounds, throw ProgramException 
+            - If given id is out of bounds, throw ProgramException
               with string message
             - Prompt user for book title
-            - If given title is empty or only has spaces, 
+            - If given title is empty or only has spaces,
               throw ProgramException with string message
-            - If person with given id is not found, 
+            - If person with given id is not found,
               throw ProgramException with string message
-            - If book with given book code is not found, 
+            - If book with given book code is not found,
               throw ProgramException with string message
-            - If count value of person value is equal to their max 
-              available book to rent, throw ProgramException 
+            - If count value of person value is equal to their max
+              available book to rent, throw ProgramException
               with string message
-            - If person already rented book with given book code, 
+            - If person already rented book with given book code,
               throw ProgramException with string message
-            - If person already reached their max number of books 
-              to be rented, 
+            - If person already reached their max number of books
+              to be rented,
               throw integer exception
-            - If searched book available is 0, throw 
+            - If searched book available is 0, throw
               ProgramException with string message
-            - Output confirmation of successful renting of 
+            - Output confirmation of successful renting of
               a searched book to terminal
 **/
 void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr person[2], int person_array_size);
 
 /**
-    Purpose: Returns a node in Linked List of dynamic 
+    Purpose: Returns a node in Linked List of dynamic
              polymorphic Person object has the given id.
-    Input: - head as the head of Linked List of dynamic 
+    Input: - head as the head of Linked List of dynamic
              polymorphic Person objects as data
-           - id as the id of dynmaic polymorphic 
+           - id as the id of dynmaic polymorphic
              Person object to find
-    Input Requirement: - Given head as head of Linked List of 
+    Input Requirement: - Given head as head of Linked List of
                          polymorphic Person objects
-                       - Given id as the id of polymorphic 
+                       - Given id as the id of polymorphic
                          Person object to look for
     Result: - Return the PersonNodePtr with data that has given id
             - Return NULL otherwise
@@ -207,88 +207,88 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
 PersonNodePtr find_person_with_given_id(PersonNodePtr head, int id);
 
 /**
-    Purpose: - Returns a node in Linked List of dynamic 
+    Purpose: - Returns a node in Linked List of dynamic
                polymorphic Book object has the given title.
              - Helper function for rent_book function
-    Input: - library as array of heads of Linked List 
+    Input: - library as array of heads of Linked List
              dynamic of polymorphic Book objects
-           - library_array_size as number of elements 
+           - library_array_size as number of elements
              in given library array
            - title as the title of Book object to look for
     Input Requirement: - Given library should be of type BookNodePtr
-                       - Given library should hold heads of Linked List 
+                       - Given library should hold heads of Linked List
                          of polymorphic Book objects
-                       - Given library_array_size should be equal to number 
+                       - Given library_array_size should be equal to number
                          of elements in given library array
                        - Given library_array_size should be an integer
                        - Given title should be a string
-    Result: - Return the BookNodePtr with polymorphic Book object as its data 
+    Result: - Return the BookNodePtr with polymorphic Book object as its data
              that has given title as its title
             - Otherwise return NULL
 **/
 BookNodePtr find_book_with_title(BookNodePtr library[3], int library_array_size, string title);
 
- /**
-    Purpose: Function to be called when user selects 
-             the option to Return a Book.
-    Input: - library as array of heads of Linked list of 
-             polymorphic Book objects
-           - library_array_size as the number of 
-             elements in given library array
-           - person as array of heads of Linked List 
-             of polymorphic Person objects
-           - person_array_size as the number of 
-             elements in given person array
-    Input Requirement: - Given library array should be 
-                         of type BookNodePtr
-                       - Given library array should store heads of Linked List 
-                         with data of polymorphic Book object
-                       - Given library_array_size should be equal to the 
-                         number of elements in given library array
-                       - Given library_array_size should be an integer
-                       - Given person array should be of type PersonNodePtr
-                       - Given person array should store heads of Linked List 
-                         with data of polymorphic Person object
-                       - Given person_array_size should be equal to the 
-                         number of elements in given person_array
-                       - Given person_array_size should be an integer
-    Result: - Prompt user for id
-            - If given id is invalid throw 
-              ProgramException with string message
-            - Prompt user for book code
-            - If given book code is invalid, throw 
-              ProgramException with string message
-            - If book with given book code does not exist, 
-              throw ProgramException with string message
-            - If person with given id does not exist throw char const* exception
-            - If person did not rent book with given code, throw integer exception
-            - Prompt user if they want to rent book
-            - If user enters Y or y remove book code from their rented book array
-              and set book as returned
+/**
+   Purpose: Function to be called when user selects
+            the option to Return a Book.
+   Input: - library as array of heads of Linked list of
+            polymorphic Book objects
+          - library_array_size as the number of
+            elements in given library array
+          - person as array of heads of Linked List
+            of polymorphic Person objects
+          - person_array_size as the number of
+            elements in given person array
+   Input Requirement: - Given library array should be
+                        of type BookNodePtr
+                      - Given library array should store heads of Linked List
+                        with data of polymorphic Book object
+                      - Given library_array_size should be equal to the
+                        number of elements in given library array
+                      - Given library_array_size should be an integer
+                      - Given person array should be of type PersonNodePtr
+                      - Given person array should store heads of Linked List
+                        with data of polymorphic Person object
+                      - Given person_array_size should be equal to the
+                        number of elements in given person_array
+                      - Given person_array_size should be an integer
+   Result: - Prompt user for id
+           - If given id is invalid throw
+             ProgramException with string message
+           - Prompt user for book code
+           - If given book code is invalid, throw
+             ProgramException with string message
+           - If book with given book code does not exist,
+             throw ProgramException with string message
+           - If person with given id does not exist throw char const* exception
+           - If person did not rent book with given code, throw integer exception
+           - Prompt user if they want to rent book
+           - If user enters Y or y remove book code from their rented book array
+             and set book as returned
 **/
 void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr person[2], int person_array_size);
 
 /**
-    Purpose: Return BookNodePtr node that has polymorphic 
+    Purpose: Return BookNodePtr node that has polymorphic
              object with book code equal to given book_code.
-    Input: - library as array of heads of Linked List with 
+    Input: - library as array of heads of Linked List with
              data of polymorphic Book objects
            - array_size as number of elements in given library array
-           - book_code as the book code of dynamoc 
+           - book_code as the book code of dynamoc
              polymorphic Book object to look for
     Input Requirement: - Given library array should be of type BookNodePtr
-                       - Given library_array_size should store heads of Linked List with 
+                       - Given library_array_size should store heads of Linked List with
                          data of polymorphic Book objects
-                       - Given book_code as the book code of polymorphic 
+                       - Given book_code as the book code of polymorphic
                          Book object to search for
-    Result: - Return BookNodePtr with data of polymorphic Book object 
+    Result: - Return BookNodePtr with data of polymorphic Book object
               that has given book_code
             - Return NULL
 **/
 BookNodePtr find_book_with_code(BookNodePtr library[3], int library_array_size, int book_code);
 
 /**
-    Purpose: - Function to call when user chooses 
+    Purpose: - Function to call when user chooses
                the option of Show My information.
              - Helper function for function return_book
     Input: - person array of heads of Linked List with data of polymorphic Person objects
@@ -296,9 +296,9 @@ BookNodePtr find_book_with_code(BookNodePtr library[3], int library_array_size, 
            - library array of heads of Linked list with data of polymorphic Book objects
            - library_array_size as number of elements in given library array
     Input Requirement: - Given person array is of type PersonNodePtr
-                       - Given person array stores the heads of Linked List of 
+                       - Given person array stores the heads of Linked List of
                          polymorphic Person object
-                       - Given person_array_size is equal to the number of 
+                       - Given person_array_size is equal to the number of
                          elements in given Person array
                        - Given person_array_size is an integer
                        - Given library is of type BookNodePtr
@@ -306,37 +306,37 @@ BookNodePtr find_book_with_code(BookNodePtr library[3], int library_array_size, 
                        - Given library_array_size is equal to number of elements
                        - Given library_array_size is an integer
     Result: - Prompt user for id
-            - If id is not valid, throw 
+            - If id is not valid, throw
               ProgramException exception with string message
             - Prompt user for name
-            - If given name is empty or only spaces, 
+            - If given name is empty or only spaces,
               throw ProgramException exception
             - If person does not exist, throw integer exception
-            - Output the number of books rented by person 
+            - Output the number of books rented by person
               with given id to terminal
-            - Output the title, code, and unique 
+            - Output the title, code, and unique
               information to terminal
 **/
- void show_person_info(PersonNodePtr person[2], int person_array_size, BookNodePtr library[3], int library_array_size);
+void show_person_info(PersonNodePtr person[2], int person_array_size, BookNodePtr library[3], int library_array_size);
 
 /**
     Purpose: Function to call when user chooses the option of Show all Books.
-    Input: - library as array of heads of Linked List with data 
+    Input: - library as array of heads of Linked List with data
              of polymorphic Book objects
-           - library_array_size as number of elements in 
+           - library_array_size as number of elements in
              given library array
            - book_types as an array of strings representing different genres of books
            - book_types_size as number of elements in given book-types array
     Input Requirement: - Given library is of type BookNodePtr
-                       - Given library stores heads of Linked List 
+                       - Given library stores heads of Linked List
                          of polymorphic Book objects
-                       - Given library_array_size is equal to the number 
+                       - Given library_array_size is equal to the number
                          of elements in given library array
                        - Given book_types array is of type string
-                       - Given book_types_size is equal to number 
+                       - Given book_types_size is equal to number
                          of elements in given book_types
                        - Given book_types_size is an integer
-    Result :  Output the book code, title, unique book 
+    Result :  Output the book code, title, unique book
               information, available, and rented to terminal
 **/
 // Task 5: Show all books
@@ -347,9 +347,9 @@ void show_all_books(BookNodePtr library[3], int library_array_size, string book_
     Purpose: Deallocate the dynamic memory in data structures used in this project.
     Input: - array as a templated pointer to first element of an array
            - array_size as number of elements of given array
-    Input Requirement: - Given array is points to first element of an array 
+    Input Requirement: - Given array is points to first element of an array
                          with templated data type T
-                       - Given array_size is equal to number of elements 
+                       - Given array_size is equal to number of elements
                          in array pointed to by given array pointer
                        - Given array_size is an integer
 **/
@@ -357,7 +357,7 @@ template <class T>
 void deallocate_array(T* array, int array_size);
 
 int main()
-{  
+{
     // Declare ifstream object inputFile
     ifstream inputFile;
     // Declare array of BookNodePtr
@@ -404,12 +404,12 @@ int main()
     string book_types[] = { "Children", "Computer", "Novel" };
     // Declare and initialize variable to store number of elements in book_types array
     int book_types_size = sizeof(book_types) / sizeof(string);
-   // Declare and initialize variable to store user input for their choice of task to run
-   string user_input = "";
-   // Declare and initialize variable to store the given user_input as int
-   int user_input_as_integer = 0;
-   do
-   {
+    // Declare and initialize variable to store user input for their choice of task to run
+    string user_input = "";
+    // Declare and initialize variable to store the given user_input as int
+    int user_input_as_integer = 0;
+    do
+    {
         // Change the user_input into an integer value
         // Show menu to user and store their choice into user_input variable
         show_menu(user_input);
@@ -446,63 +446,63 @@ int main()
         switch (user_input_as_integer)
         {
             // If user_input_as_int is 1
-            case 1:
-                // Call search_book function
-                search_book(library, library_array_size);
-                // Output newline to terminal for readability
-                cout << endl;
-                // Prevent fall through
-                break;
+        case 1:
+            // Call search_book function
+            search_book(library, library_array_size);
+            // Output newline to terminal for readability
+            cout << endl;
+            // Prevent fall through
+            break;
             // If user_input_as int is 2
-            case 2:
-                // Call rent_book function
-                rent_book(library, library_array_size, person, person_array_size);
-                // Output newline to terminal for readability
-                cout << endl;
-                // Prevent fall through
-                break;
+        case 2:
+            // Call rent_book function
+            rent_book(library, library_array_size, person, person_array_size);
+            // Output newline to terminal for readability
+            cout << endl;
+            // Prevent fall through
+            break;
             // If user_input_as_int is 3
-            case 3:
-                // Call return_book function
-                return_book(library, library_array_size, person, person_array_size);
-                // Output newline to terminal for readability
-                cout << endl;
-                // Prevent fall through
-                break;
+        case 3:
+            // Call return_book function
+            return_book(library, library_array_size, person, person_array_size);
+            // Output newline to terminal for readability
+            cout << endl;
+            // Prevent fall through
+            break;
             // If user_input_as_int is 4
-            case 4:
-                // Call show_person_info function
-                show_person_info(person, person_array_size, library, library_array_size);
-                // Output newline to terminal for readability
-                cout << endl;
-                // Prevent fall through
-                break;
+        case 4:
+            // Call show_person_info function
+            show_person_info(person, person_array_size, library, library_array_size);
+            // Output newline to terminal for readability
+            cout << endl;
+            // Prevent fall through
+            break;
             // If user_input_as_input is 5
-            case 5:
-                // Call show_all_books function
-                show_all_books(library, library_array_size, book_types, book_types_size);
-                // Output newline to terminal for readability
-                cout << endl;
-                // Prevent fall through
-                break;
-            default:
-                // Output newline to terminal for readability
-                cout << endl;
-                // Notify program is about to exit
-                cout << " Exiting...." << endl;
+        case 5:
+            // Call show_all_books function
+            show_all_books(library, library_array_size, book_types, book_types_size);
+            // Output newline to terminal for readability
+            cout << endl;
+            // Prevent fall through
+            break;
+        default:
+            // Output newline to terminal for readability
+            cout << endl;
+            // Notify program is about to exit
+            cout << " Exiting...." << endl;
         }
-   // Keep looping while user_input_as_int is not 6
-   } while (user_input_as_integer != 6);
-    
-   // Deallocate dynamic variables in library array
-   deallocate_array(library, library_array_size);
-   // Deallocate dynamic variables in person array
-   deallocate_array(person, person_array_size);
-   
-   return 0;
+        // Keep looping while user_input_as_int is not 6
+    } while (user_input_as_integer != 6);
+
+    // Deallocate dynamic variables in library array
+    deallocate_array(library, library_array_size);
+    // Deallocate dynamic variables in person array
+    deallocate_array(person, person_array_size);
+
+    return 0;
 }
 
-void show_menu(string &user_input)
+void show_menu(string& user_input)
 {
     // Show user menu with 6 options
     cout << "-----------------------" << endl;
@@ -520,7 +520,7 @@ void show_menu(string &user_input)
     cout << " Select (1-6) : ";
     // Store user input into given user_input variables
     getline(cin >> ws, user_input);
- 
+
 }
 
 bool given_string_is_integer(const string& input)
@@ -579,8 +579,8 @@ void fill_library_array(BookNodePtr library[3], ifstream& inputFile)
             // Try to allocate a dynamic polymorphic ChildrenBook object
             try
             {
-              // Allocate a dynamic polymorphic ChildenBook object with data read in from file
-              children_book = new ChildrenBook(book_code, title, available, rented, age);
+                // Allocate a dynamic polymorphic ChildenBook object with data read in from file
+                children_book = new ChildrenBook(book_code, title, available, rented, age);
             }
             // If failed to allocate dynamic memory
             catch (bad_alloc)
@@ -606,7 +606,7 @@ void fill_library_array(BookNodePtr library[3], ifstream& inputFile)
             {
                 // Allocate a dynamic polymorphic ComputerBook object with data read in from file
                 computer_book = new ComputerBook(book_code, title, available, rented, publisher);
-               
+
             }
             // If failed to allocate dynamic memory
             catch (bad_alloc)
@@ -632,7 +632,7 @@ void fill_library_array(BookNodePtr library[3], ifstream& inputFile)
             {
                 // Allocate a dynamic polymorphic Novel object with data read in from file
                 novel = new Novel(book_code, title, available, rented, published_date);
-               
+
             }
             // If failed to allocate dynamic memory
             catch (bad_alloc)
@@ -653,10 +653,10 @@ void fill_library_array(BookNodePtr library[3], ifstream& inputFile)
     library[1] = computer_books_head;
     // Set third element  to head of Linked List of Novel Books
     library[2] = novels_head;
-     
+
 }
 
-void fill_person_array(PersonNodePtr person[2], ifstream& inputFile) 
+void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
 {
     // Declare and initialize variable to store id from file
     int id = 0;
@@ -677,30 +677,30 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
     // head of Linked list of dynamic polymorphic Person objects of Students
     PersonNodePtr student_head = nullptr;
     // Read entire file opened by given inputFile object
-    while (!inputFile.eof()) 
+    while (!inputFile.eof())
     {
         // Read in id
         inputFile >> id;
         // if id is greater than and equal to 1 and less than equal to 100
-        if (id >= 1 && id <= 100) 
+        if (id >= 1 && id <= 100)
         {
             // Read in the name and books_rented following id
             inputFile >> name >> books_rented;
             // If books_rented is equal to 1
-            if (books_rented == 1) 
+            if (books_rented == 1)
             {
                 // Read in first book code
                 inputFile >> first_book_code;
                 // Declare and initialize Person pointer that will create a dynamic polymorphic Person object
                 Person* teacher = nullptr;
                 // Try to allocate memory for dynamic polymorphic object
-                try 
+                try
                 {
                     // teacher pointer allocates a dynamic Teacher object with data read in
                     teacher = new Teacher(id, name, books_rented, first_book_code, -1, -1);
                 }
                 // If failed to allocate memory 
-                catch (bad_alloc) 
+                catch (bad_alloc)
                 {
                     // Notify
                     cout << "Failed to allocate memory" << endl;
@@ -712,20 +712,20 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 insert_node_by_ascending_id(teacher_head, teacher);
             }
             // If books_rented is 2
-            else if (books_rented == 2) 
+            else if (books_rented == 2)
             {
                 // Read in first book code and second book code
                 inputFile >> first_book_code >> second_book_code;
                 // Declare and initialize Person pointer that will create a dynamic polymorphic Person object
                 Person* teacher = nullptr;
                 // Try to allocate memory for dynamic polymorphic object
-                try 
+                try
                 {
                     // teacher pointer allocates a dynamic Teacher object with data read in
                     teacher = new Teacher(id, name, books_rented, first_book_code, second_book_code, -1);
                 }
                 // If failed to allocate memory 
-                catch (bad_alloc) 
+                catch (bad_alloc)
                 {
                     // Notify
                     cout << "Failed to allocate memory" << endl;
@@ -737,20 +737,20 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 insert_node_by_ascending_id(teacher_head, teacher);
             }
             // If books_rented is equal to 3
-            else if (books_rented == 3) 
+            else if (books_rented == 3)
             {
                 // Read in first book code, second book code, and third_book_code
                 inputFile >> first_book_code >> second_book_code >> third_book_code;
                 // Declare and initialize Person pointer that will create a dynamic polymorphic Person object
                 Person* teacher = nullptr;
                 // Try to allocate memory for dynamic polymorphic object
-                try 
+                try
                 {
                     // teacher pointer allocates a dynamic Teacher object with data read in
                     teacher = new Teacher(id, name, books_rented, first_book_code, second_book_code, third_book_code);
                 }
                 // If failed to allocate memory 
-                catch (bad_alloc) 
+                catch (bad_alloc)
                 {
                     // Notify
                     cout << "Failed to allocate memory" << endl;
@@ -762,18 +762,18 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 insert_node_by_ascending_id(teacher_head, teacher);
             }
             // Otherwise if book_rented is 0
-            else 
+            else
             {
                 // Declare and initialize Person pointer that will create a dynamic polymorphic Person object
                 Person* teacher = nullptr;
                 // Try to allocate memory for dynamic polymorphic object
-                try 
+                try
                 {
                     // teacher pointer allocates a dynamic Teacher object data read in
                     teacher = new Teacher(id, name, books_rented, -1, -1, -1);
                 }
                 // If failed to allocate memory 
-                catch (bad_alloc) 
+                catch (bad_alloc)
                 {
                     // Notify
                     cout << "Failed to allocate memory" << endl;
@@ -786,12 +786,12 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
             }
         }
         // If given id is greater than or equal to 101 and less than or equal to 300
-        else if (id >= 101 && id <= 300) 
+        else if (id >= 101 && id <= 300)
         {
             // Read in name and books_rented data following id
             inputFile >> name >> books_rented;
             // If books_rented is equal to 1
-            if (books_rented == 1) 
+            if (books_rented == 1)
             {
                 // Read in first book code following books_rented
                 inputFile >> first_book_code;
@@ -799,13 +799,13 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 // create a dynamic polymorphic person object
                 Person* student = nullptr;
                 // Try to allocate memory for dynamic polymorphic object
-                try 
+                try
                 {
                     // student pointer allocates a dynamic Student object with data read in
                     student = new Student(id, name, books_rented, first_book_code, -1);
                 }
                 // If failed to allocate memory 
-                catch (bad_alloc) 
+                catch (bad_alloc)
                 {
                     // Notify
                     cout << "Failed to allocate memory" << endl;
@@ -817,7 +817,7 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 insert_node_by_ascending_id(student_head, student);
             }
             // If books_rented is equal to 2
-            else if (books_rented == 2) 
+            else if (books_rented == 2)
             {
                 // Read in first book code and second book_code following books_rented
                 inputFile >> first_book_code >> second_book_code;
@@ -825,13 +825,13 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 // create a dynamic polymorphic person object
                 Person* student = nullptr;
                 // Try to allocate memory for dynamic polymorphic object
-                try 
+                try
                 {
                     // student pointer allocates a dynamic Student object with data read in
                     student = new Student(id, name, books_rented, first_book_code, second_book_code);
                 }
                 // If failed to allocate memory 
-                catch (bad_alloc) 
+                catch (bad_alloc)
                 {
                     // Notify
                     cout << "Failed to allocate memory" << endl;
@@ -843,19 +843,19 @@ void fill_person_array(PersonNodePtr person[2], ifstream& inputFile)
                 insert_node_by_ascending_id(student_head, student);
             }
             // If books_rented equal 0
-            else 
+            else
             {
                 // Declare and initialize Person pointer that will 
                // create a dynamic polymorphic person object
                 Person* student = nullptr;
                 // Try to allocate memory for dynamic polymorphic object
-                try 
+                try
                 {
                     // student pointer allocates a dynamic Student object with data read in
                     student = new Student(id, name, books_rented, -1, -1);
                 }
                 // If failed to allocate memory 
-                catch (bad_alloc) 
+                catch (bad_alloc)
                 {
                     // Notify
                     cout << "Failed to allocate memory" << endl;
@@ -900,12 +900,12 @@ void search_book(BookNodePtr library[3], int library_size)
         // Save user input into book_code variable
         getline(cin, book_code);
         // If book_code consists of all digits, is not empty, and is not all spaces
-        if (given_string_is_integer(book_code) && !book_code.empty() 
+        if (given_string_is_integer(book_code) && !book_code.empty()
             && book_code.find_first_not_of(' ') != title.npos)
         {
             // Make book_code string into an integer 
             // and save in variable
-           book_code_as_int = stoi(book_code);
+            book_code_as_int = stoi(book_code);
         }
         // otherwise
         else
@@ -946,8 +946,8 @@ void search_book(BookNodePtr library[3], int library_size)
             // throw custom exception ProgramException
             throw ProgramException(" Given title should not be empty!");
         }
-       // Set requested_book pointer to result of function to find 
-       // book with given code and title
+        // Set requested_book pointer to result of function to find 
+        // book with given code and title
         requested_book = find_book_with_given_code_and_title(book_head, book_code_as_int, title);
         // If requested_book is stil NULL
         if (requested_book == NULL)
@@ -982,7 +982,7 @@ BookNodePtr find_book_with_given_code_and_title(BookNodePtr head, int code, stri
     {
         // If the code and title of current the data of current 
         // node is equal to given code and title
-        if (traverse->getData()->getCode() == code && 
+        if (traverse->getData()->getCode() == code &&
             traverse->getData()->getTitle() == title)
         {
             // Return the node
@@ -1025,7 +1025,7 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         getline(cin, id);
         // If given id consists of all digits, is not empty, 
         // and does not only consist of spaces
-        if (given_string_is_integer(id) && !id.empty() 
+        if (given_string_is_integer(id) && !id.empty()
             && id.find_first_not_of(' ') != title.npos)
         {
             // Make book_code string into an integer 
@@ -1049,7 +1049,7 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         cout << " Enter book title : ";
         // Store user input in title
         getline(cin, title);
-        
+
         // If title is empty or only has spaces
         if (title.empty() || title.find_first_not_of(' ') == title.npos)
         {
@@ -1110,32 +1110,32 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         // node to display information of books they rented
         wanted_person->getData()->displayRentInfo();
         // Prompt user if they want to rent book with given title
-        cout << " Do want to rent '" << title << "' (y/n)? ";
+        cout << " Do you want to rent '" << title << "' (y/n)? ";
         // Store user input into variable user_input
         cin >> user_input;
         // If user_input is Y or y
         if (user_input == 'Y' || user_input == 'y')
         {
-           
-          // Set variable to the value of the available private member 
-          // varible of the searched book node
-          int available = book->getData()->getAvailable();
-          // If available is 0
-          if (available == 0)
-          {
-             // throw custom exception ProgramException
-             throw ProgramException(" All copies of " + book->getData()->getTitle() 
-                 + " have been rented out.");
-          }
-          // Declare and initialize book_code as the 
-          // book code of data of searched book node
-          int book_code = book->getData()->getCode();
-          // Call rentBook function of the data of wanted_person node
-          wanted_person->getData()->rentBook(book_code);
-          // Call markRented function of the data of book node
-          book->getData()->markRented();
-          // Notify user that rent succeeded
-         cout << " ***** Rent succeed. Check your info!" << endl;
+
+            // Set variable to the value of the available private member 
+            // varible of the searched book node
+            int available = book->getData()->getAvailable();
+            // If available is 0
+            if (available == 0)
+            {
+                // throw custom exception ProgramException
+                throw ProgramException(" All copies of " + book->getData()->getTitle()
+                    + " have been rented out.");
+            }
+            // Declare and initialize book_code as the 
+            // book code of data of searched book node
+            int book_code = book->getData()->getCode();
+            // Call rentBook function of the data of wanted_person node
+            wanted_person->getData()->rentBook(book_code);
+            // Call markRented function of the data of book node
+            book->getData()->markRented();
+            // Notify user that rent succeeded
+            cout << " ***** Rent succeed. Check your info!" << endl;
         }
     }
     // Catch custom  exception thrown
@@ -1146,7 +1146,7 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         // Notify
         cout << e.get_message() << endl;
     }
-    
+
     // Catch integer exception thrown
     catch (int exception)
     {
@@ -1154,9 +1154,9 @@ void rent_book(BookNodePtr library[3], int library_array_size, PersonNodePtr per
         cout << endl;
         // Output message that notifies searched person 
         // already reached max number of books rented
-        cout << " Hello " << wanted_person->getData()->getName() 
-             << ", you have reached your max number of books rented of "
-             << exception << endl;
+        cout << " Hello " << wanted_person->getData()->getName()
+            << ", you have reached your max number of books rented of "
+            << exception << endl;
     }
 }
 
@@ -1166,7 +1166,7 @@ PersonNodePtr find_person_with_given_id(PersonNodePtr head, int id)
     // traverse Linked List to given head
     PersonNodePtr traverse = head;
     // Keep traversing Linked List while traverse is not NULL
-    while (traverse != NULL) 
+    while (traverse != NULL)
     {
         // If a node with data has id equal to given id
         if (traverse->getData()->getId() == id)
@@ -1226,7 +1226,7 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
     // Declare and initialize pointer to store node with 
     PersonNodePtr wanted_person = nullptr;
     // Put main function logic in try so any exception can be handled
-    try 
+    try
     {
         // Prompt user for id
         cout << " Enter your id    : ";
@@ -1234,7 +1234,7 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         getline(cin, id);
         // If given id string consists of all digits, is not empty, 
         // and does not only consist of spaces 
-        if (given_string_is_integer(id) && !id.empty() 
+        if (given_string_is_integer(id) && !id.empty()
             && id.find_first_not_of(' ') != id.npos)
         {
             // Make book_code string into an integer 
@@ -1259,8 +1259,8 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         getline(cin, book_code);
         // If given book_code string consists of all digits, is not empty, 
       // and does not only consist of spaces 
-        if (given_string_is_integer(book_code) && !book_code.empty() 
-            &&  book_code.find_first_not_of(' ') != book_code.npos)
+        if (given_string_is_integer(book_code) && !book_code.empty()
+            && book_code.find_first_not_of(' ') != book_code.npos)
         {
             // Make book_code string into an integer 
             // and save in variable
@@ -1284,8 +1284,8 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         // If book pointer is still NULL
         if (book == NULL)
         {
-           // throw custom exception ProgramException
-           throw ProgramException(" Book with code " + book_code + " does not exist");
+            // throw custom exception ProgramException
+            throw ProgramException(" Book with code " + book_code + " does not exist");
         }
         // If given id is greater than 1 and less than equal to 100
         if (id_as_int >= 1 && id_as_int <= 100)
@@ -1314,15 +1314,15 @@ void return_book(BookNodePtr library[3], int library_array_size, PersonNodePtr p
         if (!book_rented)
         {
             // throw custom exception ProgramException
-            throw ProgramException(" User with id of " + id + 
-                                 " did not rent book with book code of " + book_code);
+            throw ProgramException(" User with id of " + id +
+                " did not rent book with book code of " + book_code);
         }
         // Output newline to terminal for readability
         cout << endl;
         // Declare and initialize variable to store char input
         char user_input = ' ';
         // Prompt user if they want to return book
-        cout << " Do you want to return `" << book->getData()->getTitle() << "` (y/n) ? ";
+        cout << " Do you want to return `" << book->getData()->getTitle() << "` (y/n)? ";
         // Save user input into user_input variablke
         cin >> user_input;
         // If user_input is Y or y
@@ -1369,7 +1369,7 @@ BookNodePtr find_book_with_code(BookNodePtr library[3], int library_array_size, 
     }
     // If given book-code is greater than or equal 
    // to 3001 and less than or equal to 4000
-    else if(book_code >= 3001 && book_code <= 4000)
+    else if (book_code >= 3001 && book_code <= 4000)
     {
         // Set traverse to second element of given 
        // library array to traverse Linked List of Novel
@@ -1402,7 +1402,7 @@ void show_person_info(PersonNodePtr person[2], int person_array_size, BookNodePt
     string name = "";
     // Declare and initialize pointer variable to traverse linked list of person objects
     PersonNodePtr person_ptr = nullptr;
-        // Declare and initialize pointer to store node of person to look for
+    // Declare and initialize pointer to store node of person to look for
     PersonNodePtr wanted_person = nullptr;
     // Put main function logic in try so any exception can be handled
     try
@@ -1485,7 +1485,7 @@ void show_person_info(PersonNodePtr person[2], int person_array_size, BookNodePt
                 // Call member function to display unique information of polymorphic Book objects
                 book->getData()->displayInfoForPerson();
             }
-         }
+        }
     }
     // if integer exception is caught
     catch (const ProgramException& e)
@@ -1515,7 +1515,7 @@ void show_all_books(BookNodePtr library[3], int library_array_size, string book_
             cout << "===========================================================" << endl;
             cout << "                Children Books                             " << endl;
             cout << "===========================================================" << endl;
-            cout << " code              title             age  available rented" <<  endl;
+            cout << " code              title             age  available rented" << endl;
             cout << "-----------------------------------------------------------" << endl;
         }
         // If activity equal to Computer
@@ -1558,12 +1558,12 @@ void show_all_books(BookNodePtr library[3], int library_array_size, string book_
 template<typename T, typename S>
 void insert_node_by_ascending_id(T& head, S object)
 {
-   // Try to allocate node for Linked List
+    // Try to allocate node for Linked List
     T newNode = nullptr;
     try
     {
         // Create templated node with templated object as its data
-       newNode = new Node<S>(object, NULL);
+        newNode = new Node<S>(object, NULL);
     }
     // If failed to allocate memory
     catch (bad_alloc)
@@ -1573,16 +1573,16 @@ void insert_node_by_ascending_id(T& head, S object)
         // Exit program with error code 1
         exit(1);
     }
-  
+
     // If the Linked List is empty
-   if (head == NULL)
+    if (head == NULL)
     {
-       // Make new node the head
+        // Make new node the head
         head = newNode;
         // Get out of function
         return;
     }
-   // If the id of given object is less than or equal to the id of the object stored in head node
+    // If the id of given object is less than or equal to the id of the object stored in head node
     if (object->getIdentification() <= head->getData()->getIdentification())
     {
         // Insert new node into start of Linked List
@@ -1601,7 +1601,7 @@ void insert_node_by_ascending_id(T& head, S object)
     T prev = head;
     // Keep traversing Linked list until end and as long as the id 
     // of the object in current node is less than or equal to id of given object
-    while (traverse != NULL && 
+    while (traverse != NULL &&
         traverse->getData()->getIdentification() <= object->getIdentification())
     {
         // Set prev pointer to last traversed node

@@ -15,7 +15,7 @@ ComputerBook::ComputerBook() : Book(), publisher("")
 
 // Calls parent constructor with 5 arguments
 // Sets private member variable publisher to given publisher
-ComputerBook::ComputerBook(int code, std::string title, int available, int rented, std::string publisher) : 
+ComputerBook::ComputerBook(int code, std::string title, int available, int rented, std::string publisher) :
 	Book(code, title, available, rented), publisher(publisher)
 {
 
@@ -69,7 +69,7 @@ void ComputerBook::displayInfoForPerson() const
 {
 	// Output values of private member variable title, code, 
 	// and publisher neatly formatted to terminal
-	std::cout << " * " << getTitle() << "(" << getCode() << ")" << " - " 
+	std::cout << " * " << getTitle() << "(" << getCode() << ")" << " - "
 		<< "publisher  " << getPublisher() << std::endl;
 }
 
@@ -77,8 +77,8 @@ void ComputerBook::displayAllInfo() const
 {
 	// Output values of private member variable code, title with no underscore, 
 	// publisher, available, and rented neatly formatted to terminal
-	std::cout << " " << getCode() << std::setw(30) << get_formatted_title() 
-		<< std::setw(20) << getPublisher() << std::setw(7) << getAvailable() 
+	std::cout << " " << getCode() << std::setw(30) << get_formatted_title()
+		<< std::setw(20) << getPublisher() << std::setw(7) << getAvailable()
 		<< std::setw(7) << getRented() << std::endl;
 }
 

@@ -71,7 +71,7 @@ void Novel::displayInfoForPerson() const
 {
 	// Output the values of inherited private member variables title 
 	// and code and value of private member variable publish_date formatted to terminal
-	std::cout << " * " << getTitle() << "(" << getCode() << ")" 
+	std::cout << " * " << getTitle() << "(" << getCode() << ")"
 		<< " - " << "publish date " << get_publish_date() << std::endl;
 }
 
@@ -80,9 +80,9 @@ void Novel::displayAllInfo() const
 	// Output the values of inherited private member variables code, 
 	// title with no underscore, publish_date, available and rented 
 	// formatted to terminal
-	std::cout << " " << getCode() << std::setw(25) 
-		<< get_formatted_title() << std::setw(12) 
-		<< get_publish_date() << std::setw(15) 
+	std::cout << " " << getCode() << std::setw(25)
+		<< get_formatted_title() << std::setw(12)
+		<< get_publish_date() << std::setw(15)
 		<< getAvailable() << std::setw(8) << getRented() << std::endl;
 }
 

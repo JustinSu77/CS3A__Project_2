@@ -20,7 +20,7 @@ Teacher::Teacher() : Person()
 
 // Calls constructor of 3 arguments of parent class to 
 // set inherited private member variables to given values
-Teacher::Teacher(int id, std::string name, int count, int first_code, int second_code, int third_code) 
+Teacher::Teacher(int id, std::string name, int count, int first_code, int second_code, int third_code)
 	: Person(id, name, count)
 {
 	// Set first element of private member variable code to given first_code
@@ -74,14 +74,14 @@ void Teacher::displayRentInfo() const
 	if (getCount() == 0 || getCount() == 2)
 	{
 		// Output values of private member variables name and count in plural tense
-		std::cout << " You are " << getName() << ".  " << "You rented " 
+		std::cout << " You are " << getName() << ". " << "You rented "
 			<< getCount() << " books." << std::endl;
 	}
 	// If number of books rented is 1
 	else if (getCount() == 1)
 	{
 		// Output value of private member variables name and coiunt in single tense
-		std::cout << " You are " << getName() << ".  " << "You rented " 
+		std::cout << " You are " << getName() << ". " << "You rented "
 			<< getCount() << " book." << std::endl;
 	}
 	// Otherwise
@@ -89,7 +89,7 @@ void Teacher::displayRentInfo() const
 	{
 		// Output value of private member variables name 
 		// and count and notify that max number of books have already been rented
-		std::cout << " You are " << getName() << ".  " << "You already rented " 
+		std::cout << " You are " << getName() << ".  " << "You already rented "
 			<< getCount() << " books." << std::endl;
 	}
 

@@ -13,7 +13,7 @@ ProgramException::ProgramException() : message("Error")
 }
 
 // Set value of private member variable to given message
-ProgramException::ProgramException(std::string message) 
+ProgramException::ProgramException(std::string message)
 	: message(message)
 {
 

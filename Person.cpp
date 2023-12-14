@@ -16,7 +16,7 @@ Person::Person() : id(0), name(""), count(0)
 // Set private member variable id to given id
 // Set private member variable name to given name
 // Set private member variable to given count
-Person::Person(int id, std::string name, int count) : 
+Person::Person(int id, std::string name, int count) :
 	id(id), name(name), count(count)
 {
 

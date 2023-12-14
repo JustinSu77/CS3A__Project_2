@@ -10,7 +10,7 @@
 // Sets private member variable title to empty string
 // Sets private member variable available to 0
 // Sets private member variable rented to 0
-Book::Book() : 
+Book::Book() :
 	code(0), title(""), available(0), rented(0)
 {
 
